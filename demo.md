@@ -44,7 +44,7 @@ flowchart TB
     subgraph HOST["Host machine"]
         subgraph APP["langgraph_ollama — Streamlit app (Python 3.12, uv)"]
             UI["Streamlit UI<br/>app.py"]
-            GRAPH["LangGraph StateGraph<br/>entry: rag → conversation<br/>cond: msgs > 3 → summarize<br/>SqliteSaver checkpointer (in-mem)"]
+            GRAPH["LangGraph StateGraph<br/>entry: rag → conversation<br/>cond: msgs &gt; 3 → summarize<br/>SqliteSaver checkpointer (in-mem)"]
             RAGNODE["local_rag node<br/>create_openai_tools_agent<br/>+ AgentExecutor"]
             RAGTOOL["rag_query tool<br/>tools/rag.py<br/>FAISS + OllamaEmbeddings<br/>(nomic-embed-text, local)"]
             MCPLOADER["load_md_mcp_tools<br/>tools/mcp_notes.py<br/>· module-level tool cache<br/>· 60s failure-retry throttle<br/>· sync-wraps async MCP tools<br/>· returns [] if unavailable"]
@@ -74,16 +74,16 @@ flowchart TB
 
     UI --> GRAPH
     GRAPH --> RAGNODE
-    RAGNODE -->|"tool 1"| RAGTOOL
-    RAGNODE -->|"tools 2..n"| MCPLOADER
-    MCPLOADER -->|"docker run -i --rm<br/>-e MD_TRANSPORT=stdio<br/>-v folder:/data"| FASTMCP
+    RAGNODE -->|tool 1| RAGTOOL
+    RAGNODE -->|tools 2..n| MCPLOADER
+    MCPLOADER -->|docker run -i --rm<br/>-e MD_TRANSPORT=stdio<br/>-v folder:/data| FASTMCP
     FASTMCP --> TOOLS3
     TOOLS3 --> SCAN
     SCAN --> CHUNK
     VOL -.-> SCAN
-    RAGNODE -->|"LLM + tool-calling"| OLLAMA
-    OLLAMA -.->|":cloud models proxy"| CLOUD
-    TEL -.->|"OTLP spans + metrics"| COLL
+    RAGNODE -->|LLM + tool-calling| OLLAMA
+    OLLAMA -.->|:cloud models proxy| CLOUD
+    TEL -.->|OTLP spans + metrics| COLL
     COLL --> TEMPO
     COLL --> PROM
     TEMPO --> GRAF
