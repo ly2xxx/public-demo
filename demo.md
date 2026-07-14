@@ -1,4 +1,4 @@
-# An AI Engineering Journey
+# An AI Engineering Journey - [github.com/ly2xxx/public-demo/blob/main/demo.md](https://github.com/ly2xxx/public-demo/blob/main/demo.md)
 
 ---
 
