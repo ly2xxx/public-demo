@@ -2,37 +2,37 @@
 
 ---
 
-## 2023: RAG Chatbot
+## [2023: RAG Chatbot](https://github.com/ly2xxx/langgraph_ollama/blob/main/tools/rag.py)
 
 ![2023 RAG](2023-rag.png)
 
 ---
 
-## 2024: Multi-Agent Flows
+## [2024: Multi-Agent Flows](https://github.com/ly2xxx/langgraph_ollama/blob/main/rag_research_chatbot.py)
 
 ![2024 Agent](2024-agent.png)
 
 ---
 
-## 2025: Open Tool Standard (MCP)
+## [2025: Open Tool Standard (MCP)](https://github.com/ly2xxx/md-mcp)
 
 ![2025 MCP](2025-mcp.png)
 
 ---
 
-## 2026: Observability
+## [2026: Observability](https://github.com/ly2xxx/langgraph_ollama/blob/main/IMPLEMENTATION_GUIDE.md)
 
 ![2026 Observability](2026-obs.png)
 
 ---
 
-## 2026: Observability Dashboards
+## [2026: Observability Dashboards](https://github.com/ly2xxx/langgraph_ollama/blob/main/docker-compose.observability.yml)
 
 ![2026 Observability 2](2026-obs2.png)
 
 ---
 
-## 2026: Evaluation & BDD
+## [2026: Evaluation & BDD](https://github.com/ly2xxx/md-mcp/blob/feature/otel/sample-client/PYTEST-BDD.md)
 
 ![2026 Evaluation](2026-eval.png)
 
