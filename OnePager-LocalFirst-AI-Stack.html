@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>An AI Engineering Journey — Yang Li</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #1a1a2e;
+      padding: 8mm;
+      max-width: 277mm;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 3px solid #16324f;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 18pt;
+      color: #16324f;
+    }
+
+    .byline {
+      font-size: 9.5pt;
+      color: #555;
+    }
+
+    .thesis {
+      font-size: 11pt;
+      font-style: italic;
+      color: #0f4c81;
+      margin: 6px 0 10px 0;
+    }
+
+    .thesis b {
+      color: #16324f;
+    }
+
+    .timeline {
+      display: flex;
+      align-items: stretch;
+      gap: 4px;
+      margin: 10px 0 4px 0;
+      position: relative;
+    }
+
+    .era {
+      flex: 1;
+      border: 2px solid #0f4c81;
+      border-radius: 6px;
+      padding: 6px 8px;
+      background: #f2f7fc;
+      position: relative;
+    }
+
+    .era .year {
+      display: inline-block;
+      background: #0f4c81;
+      color: #fff;
+      font-size: 8.5pt;
+      font-weight: bold;
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin-bottom: 3px;
+    }
+
+    .era h3 {
+      font-size: 10pt;
+      color: #0f4c81;
+      margin-bottom: 2px;
+    }
+
+    .era p {
+      font-size: 8.2pt;
+      line-height: 1.32;
+    }
+
+    .era .blocker {
+      font-size: 8pt;
+      margin-top: 4px;
+      padding-top: 3px;
+      border-top: 1px dashed #9dbdd8;
+      color: #333;
+    }
+
+    .era .blocker b {
+      color: #8a6000;
+    }
+
+    .link {
+      align-self: center;
+      font-size: 12pt;
+      color: #0f4c81;
+      font-weight: bold;
+    }
+
+    .caption {
+      font-size: 8.6pt;
+      color: #444;
+      margin: 3px 0 10px 0;
+      font-style: italic;
+    }
+
+    .cols {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    h2 {
+      font-size: 11pt;
+      color: #16324f;
+      border-bottom: 1.5px solid #b8cde0;
+      margin-bottom: 4px;
+      padding-bottom: 2px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      font-size: 8.7pt;
+      line-height: 1.42;
+      margin-bottom: 3px;
+      padding-left: 11px;
+      position: relative;
+    }
+
+    li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #0f4c81;
+    }
+
+    li b {
+      color: #16324f;
+    }
+
+    .bridge {
+      margin-top: 9px;
+      border: 2px solid #b07a00;
+      border-radius: 6px;
+      background: #fdf6e3;
+      padding: 6px 10px;
+    }
+
+    .bridge h2 {
+      color: #8a6000;
+      border-bottom: none;
+      margin-bottom: 3px;
+    }
+
+    .map {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+    }
+
+    .map span {
+      font-size: 8.7pt;
+      white-space: nowrap;
+    }
+
+    .map b {
+      color: #8a6000;
+    }
+
+    .footer {
+      margin-top: 7px;
+      font-size: 8pt;
+      color: #777;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>The Most Interesting Project I've Architected: the Journey Itself</h1>
+    <div class="byline">Yang Li &nbsp;·&nbsp; a self-funded AI engineering lab, 2023 → today &nbsp;·&nbsp; shipped to
+      PyPI &amp; Docker Hub</div>
+  </div>
+
+  <div class="thesis">"Since 2023 I've rebuilt my own stack every time the frontier moved — not to chase novelty, but
+    because each step solved a real
+    <b>enterprise adoption blocker</b>: trust, orchestration, integration, visibility, and proof. Each chapter below was
+    born from the previous one's pain."
+  </div>
+
+  <div class="timeline">
+    <div class="era">
+      <span class="year">2023</span>
+      <h3>RAG Chatbot</h3>
+      <p>Vanilla RAG with <b>LangChain</b>: local embeddings + FAISS over my own documents; answers grounded in sources,
+        not model weights.</p>
+      <div class="blocker"><b>Blocker solved: trust.</b> "LLMs make things up" → ground every answer in your own data.
+      </div>
+    </div>
+    <div class="link">→</div>
+    <div class="era">
+      <span class="year">2024</span>
+      <h3>Multi-Agent Flows</h3>
+      <p><b>LangGraph</b> supervisor pattern — an Internet Researcher orchestrating search, scraping and summarising as
+        a state machine; separation of concerns over one mega-prompt.</p>
+      <div class="blocker"><b>Blocker solved: real workflows.</b> One prompt can't run a process → explicit
+        orchestration, checkpointed state.</div>
+    </div>
+    <div class="link">→</div>
+    <div class="era">
+      <span class="year">2025</span>
+      <h3>Open Tool Standard (MCP)</h3>
+      <p>Early <b>MCP</b> adopter → built and published <b>md-mcp</b>: a containerised knowledge-base server (PyPI +
+        Docker Hub, helm). Read-only data mounts; any MCP client — Claude Desktop or my own agents — gets the same
+        tools.</p>
+      <div class="blocker"><b>Blocker solved: integration.</b> Every data source a bespoke connector → one open
+        standard, secure by design.</div>
+    </div>
+    <div class="link">→</div>
+    <div class="era">
+      <span class="year">2026 · Jun</span>
+      <h3>Observability</h3>
+      <p><b>OpenTelemetry</b> → Collector → Tempo + Prometheus + Grafana, fully self-hosted. Every agent node and LLM
+        call traced — latency, tokens, errors. <b>Privacy-aware spans:</b> call shape recorded, never content.</p>
+      <div class="blocker"><b>Blocker solved: visibility.</b> Compliance can't ship traces to vendor clouds → own the
+        telemetry, see every token.</div>
+    </div>
+    <div class="link">→</div>
+    <div class="era">
+      <span class="year">2026 · Jul</span>
+      <h3>Evaluation</h3>
+      <p><b>Gherkin → pytest-bdd → DeepEval</b>: plain-English specs anyone can read, deterministic tool-routing
+        assertions, run as a matrix across a model portfolio — pick the cheapest model that passes, with evidence.</p>
+      <div class="blocker"><b>Blocker solved: proof.</b> "Does the agent behave?" answered by tests, not demos —
+        readable by governance, not just engineers.</div>
+    </div>
+  </div>
+  <div class="caption">One connected system today: the LangGraph agent auto-spawns md-mcp in Docker as its knowledge
+    tools (one env var), traced end-to-end, gated by tests. The model itself is a config decision — frontier cloud
+    models via one gateway today, fully local models one line away when data sensitivity demands.</div>
+
+  <div class="cols">
+    <div class="col">
+      <h2>The approach (what held constant across five chapters)</h2>
+      <ul>
+        <li><b>Solve the blocker, not the trend:</b> every build answers a specific reason enterprises say "no" to AI —
+          trust, workflows, integration, visibility, proof.</li>
+        <li><b>Own the seams:</b> open standards at every boundary (MCP for tools, OTLP for telemetry, one gateway for
+          models) so any vendor piece swaps without touching agent code.</li>
+        <li><b>Secure &amp; responsible by design:</b> read-only mounts, telemetry that records shape not content,
+          sensitivity-based local/cloud routing, answers that cite or refuse.</li>
+        <li><b>Ship, don't just study:</b> each chapter ends in a public artifact — package, image, dashboard, test
+          suite — not a bookmark.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>Evidence on request</h2>
+      <ul>
+        <li><b>pip install md-mcp</b> — live on PyPI; Docker Hub image; helm chart.</li>
+        <li><b>Tempo trace waterfall</b> — per-node latency + token counts; found a 15s scraper bottleneck. <i>You can't
+            tune what you can't see.</i></li>
+        <li><b>Grafana</b> — request rate, error ratio, p50/95/99, token throughput per agent; self-hosted, zero
+          external dependencies.</li>
+        <li><b>BDD matrix</b> — the same behaviour spec verified across three cloud models; model choice by measurement,
+          not loyalty.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bridge">
+    <h2>Chapter six is an enterprise one — the same journey, in Azure names</h2>
+    <div class="map">
+      <span>Model gateway → <b>Azure OpenAI</b> (in-tenant)</span>
+      <span>RAG/retrieval → <b>Azure AI Search</b></span>
+      <span>OTel/Grafana → <b>App Insights</b></span>
+      <span>BDD/DeepEval → <b>AI Foundry evals</b></span>
+      <span>MCP tools → <b>governed access to Dataverse / Mercury</b></span>
+    </div>
+    <div style="font-size:9pt; margin-top:3px;"><i>"Every chapter was rehearsal for adoption inside a real business:
+        grounded answers over your data, orchestrated workflows, standard integrations, visible costs, and provable
+        behaviour — the next chapter I want to write is inside one."</i></div>
+  </div>
+
+  <div class="footer">github.com/ly2xxx &nbsp;·&nbsp; pip install md-mcp &nbsp;·&nbsp; linkedin.com/in/yang-li-78917021
+  </div>
+
+</body>
+
+</html>
