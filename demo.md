@@ -2,7 +2,7 @@
 
 ---
 
-## [2023: RAG Chatbot](https://github.com/ly2xxx/langgraph_ollama/blob/main/tools/rag.py)
+## [2023: RAG Chatbot](https://github.com/ly2xxx/local-rag-ollama/blob/main/rag.py)
 
 ![2023 RAG](2023-rag.png)
 
