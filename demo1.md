@@ -4,55 +4,55 @@
 
 ## [2023: RAG Chatbot](https://github.com/ly2xxx/local-rag-ollama/blob/main/rag.py)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2023-rag-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2023-rag-right.png" alt="2023 RAG chatbot"></td>
+</tr></table>
 
 ---
 
 ## [2024: Multi-Agent Flows](https://github.com/ly2xxx/langgraph_ollama/blob/main/rag_research_chatbot.py)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2024-agent-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2024-agent-right.png" alt="2024 multi-agent flows"></td>
+</tr></table>
 
 ---
 
 ## [2025: Open Tool Standard (MCP)](https://github.com/ly2xxx/md-mcp)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2025-mcp-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2025-mcp-right.png" alt="2025 open tool standard (MCP)"></td>
+</tr></table>
 
 ---
 
 ## [2026: Observability](https://github.com/ly2xxx/langgraph_ollama/blob/main/IMPLEMENTATION_GUIDE.md)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2026-obs-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2026-obs-right.png" alt="2026 observability"></td>
+</tr></table>
 
 ---
 
 ## [2026: Observability Dashboards](https://github.com/ly2xxx/langgraph_ollama/blob/main/docker-compose.observability.yml)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2026-obs2-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2026-obs2-right.png" alt="2026 observability dashboards"></td>
+</tr></table>
 
 ---
 
 ## [2026: Evaluation & BDD](https://github.com/ly2xxx/md-mcp/blob/feature/otel/sample-client/PYTEST-BDD.md)
 
-<div style="display: flex; gap: 0; align-items: stretch;">
-  <img src="common-left.png" style="height: 400px; width: auto;">
-  <img src="2026-eval-right.png" style="height: 400px; width: auto;">
-</div>
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2026-eval-right.png" alt="2026 evaluation & BDD"></td>
+</tr></table>
 
 
 ## 1 · Structure (static view)

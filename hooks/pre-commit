@@ -1,0 +1,15 @@
+#!/bin/sh
+# Regenerate common-left.png whenever the one-pager HTML is staged.
+# Install:  git config core.hooksPath hooks
+
+if git diff --cached --name-only | grep -q '^OnePager-LocalFirst-AI-Stack\.html$'; then
+  echo "OnePager HTML changed - re-rendering common-left.png..."
+
+  if command -v uv >/dev/null 2>&1; then
+    uv run render_onepager.py || exit 1
+  else
+    python render_onepager.py || exit 1
+  fi
+
+  git add common-left.png
+fi
