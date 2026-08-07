@@ -54,6 +54,15 @@
 <td width="50%"><img src="2026-eval-right.png" alt="2026 evaluation & BDD"></td>
 </tr></table>
 
+---
+
+## [2026: Agent Harness](https://github.com/ly2xxx/langgraph_ollama/blob/main/coding_agent/README.md)
+
+<table><tr>
+<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="2026-code-agent-right.png" alt="2026 coding agent harness"></td>
+</tr></table>
+
 
 ## 1 · Structure (static view)
 

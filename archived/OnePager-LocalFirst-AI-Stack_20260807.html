@@ -207,8 +207,8 @@
 
   <div class="thesis">"Since 2023 I've rebuilt my own stack every time the frontier moved — not to chase novelty, but
     because each step solved a real
-    <b>enterprise adoption blocker</b>: trust, orchestration, integration, visibility, proof, and autonomy. Each chapter
-    below was born from the previous one's pain."
+    <b>enterprise adoption blocker</b>: trust, orchestration, integration, visibility, and proof. Each chapter below was
+    born from the previous one's pain."
   </div>
 
   <div class="timeline">
@@ -257,16 +257,6 @@
       <div class="blocker"><b>Blocker solved: proof.</b> "Does the agent behave?" answered by tests, not demos —
         readable by governance, not just engineers.</div>
     </div>
-    <div class="link">→</div>
-    <div class="era">
-      <span class="year">2026 · Aug</span>
-      <h3>Agent Harness</h3>
-      <p>A coding agent <b>harness</b> — not the model, but the system around it that decides how it plans, acts,
-        checks itself and stores artifacts. Ten-node <b>Plan-and-Execute</b> LangGraph runtime; <b>Tree-of-Thought</b>
-        plans scored by a second model; <b>Graph-of-Thought</b> recovery over accumulated lessons.</p>
-      <div class="blocker"><b>Blocker solved: autonomy you can accept.</b> An agent with nothing external to satisfy
-        talks itself into "done" → freeze the evaluator outside its reach.</div>
-    </div>
   </div>
   <div class="caption">One connected system today: the LangGraph agent auto-spawns md-mcp in Docker as its knowledge
     tools (one env var), traced end-to-end, gated by tests. The model itself is a config decision — frontier cloud
@@ -274,7 +264,7 @@
 
   <div class="cols">
     <div class="col">
-      <h2>The approach (what held constant across six chapters)</h2>
+      <h2>The approach (what held constant across five chapters)</h2>
       <ul>
         <li><b>Solve the blocker, not the trend:</b> every build answers a specific reason enterprises say "no" to AI —
           trust, workflows, integration, visibility, proof.</li>
@@ -301,22 +291,17 @@
   </div>
 
   <div class="bridge">
-    <h2>Chapter six is Agent Harness + Observability + Evaluation</h2>
-    <div style="font-size:9pt; margin-bottom:4px;">The harness is where the previous chapters converge: the loop plans
-      and acts, telemetry makes every step visible, and frozen tests decide when it is actually done.</div>
+    <h2>Chapter six is an enterprise one — the same journey, in Azure names</h2>
     <div class="map">
-      <span>Runtime → <b>ten-node Plan-and-Execute state machine</b></span>
-      <span>Planning → <b>ToT @0.8, judged by a second model @0</b></span>
-      <span>Recovery → <b>GoT re-scoring over an evolving playbook</b></span>
-      <span>Anti <b>reward-hacking</b> → frozen BDD + filesystem jail</span>
-      <span>Last word → <b>adversarial reviewer on the diff, not the reasoning</b></span>
-      <span>Stopping → <b>failure signatures, budgets, escalation as a first-class outcome</b></span>
-      <span>Memory → <b>git worktree per run, run-report.md, SQLite checkpoints</b></span>
+      <span>Model gateway → <b>Azure OpenAI</b> (in-tenant)</span>
+      <span>RAG/retrieval → <b>Azure AI Search</b></span>
+      <span>OTel/Grafana → <b>App Insights</b></span>
+      <span>BDD/DeepEval → <b>AI Foundry evals</b></span>
+      <span>MCP tools → <b>governed access to Dataverse / Mercury</b></span>
     </div>
-    <div style="font-size:9pt; margin-top:3px;"><i>"I pointed the agent at its own 1,350-line engine and asked for a
-        five-module refactor: three plans proposed, judge scored, every gate passed, approved on the first attempt —
-        the harness improving the harness. Generation is the cheap part; the engineering is making the system prove
-        the work before you take it."</i></div>
+    <div style="font-size:9pt; margin-top:3px;"><i>"Every chapter was rehearsal for adoption inside a real business:
+        grounded answers over your data, orchestrated workflows, standard integrations, visible costs, and provable
+        behaviour — the next chapter I want to write is inside one."</i></div>
   </div>
 
   <div class="footer">github.com/ly2xxx &nbsp;·&nbsp; pip install md-mcp &nbsp;·&nbsp; linkedin.com/in/yang-li-78917021
