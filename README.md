@@ -71,7 +71,15 @@ tracked [hooks/](hooks/) directory:
 git config core.hooksPath hooks
 ```
 
-Run that once per clone. From then on, any commit that stages
+Verify it took — an empty result means the hook is **not** active and commits will
+silently skip re-rendering:
+
+```bash
+git config core.hooksPath
+```
+
+This setting lives in `.git/config`, which is neither tracked nor cloned, so it must be
+run once **per clone, on every machine**. From then on, any commit that stages
 `OnePager-LocalFirst-AI-Stack.html` re-renders `common-left.png` and stages it
 alongside — so the image and its source always land in the same commit. Commits that
 don't touch the HTML are unaffected.
