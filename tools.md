@@ -16,3 +16,6 @@ https://edisonideas.wordpress.com/2026/06/07/the-next-level-of-mcp-containerized
 Ruff - https://docs.astral.sh/ruff/rules/
 Langchain - https://docs.langchain.com/oss/python/langchain/agents
 
+## Commands:
+git reset --hard HEAD~1
+
