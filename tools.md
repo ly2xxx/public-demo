@@ -13,8 +13,11 @@ https://github.com/ly2xxx/langgraph_ollama/tree/feature/agent-loop-reviewed/codi
 https://edisonideas.wordpress.com/2026/06/07/the-next-level-of-mcp-containerized-servers-with-bring-your-own-x/
 
 ## References:
-Ruff - https://docs.astral.sh/ruff/rules/
-Langchain - https://docs.langchain.com/oss/python/langchain/agents
+> Ruff - https://docs.astral.sh/ruff/rules/
+> Langchain - https://docs.langchain.com/oss/python/langchain/agents
+
+> Hexagonal - https://www.youtube.com/watch?v=bDWApqAUjEI
+> DDD - https://www.youtube.com/watch?v=4rhzdZIDX_k
 
 ## Commands:
 > git reset --hard HEAD~1
