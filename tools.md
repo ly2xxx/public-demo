@@ -1,5 +1,15 @@
 whiteboard - [excalidraw.com](https://excalidraw.com/)
 
+Stage 1
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/DEMO-NARRATIVE.md
 side-by-side
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/PROMPT-TEMPLATE.md
+(https://docs.astral.sh/ruff/rules/)
+
+Stage 2
+https://github.com/ly2xxx/langgraph_ollama/tree/feature/agent-loop-reviewed/coding_agent
+- [upgrade] https://github.com/ly2xxx/langgraph_ollama/pull/5/changes
+- [breakdown] https://github.com/ly2xxx/langgraph_ollama/pull/3/changes
+
+https://edisonideas.wordpress.com/2026/06/07/the-next-level-of-mcp-containerized-servers-with-bring-your-own-x/
+
