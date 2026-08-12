@@ -20,4 +20,6 @@ Langchain - https://docs.langchain.com/oss/python/langchain/agents
 > git reset --hard HEAD~1
 
 > uv run pytest tests/infrastructure/ -v --cov=src/fee_engine/infrastructure --cov-report=term-missing
+>
+> uv run uvicorn infrastructure.api.main:app --reload --port 8000
 
