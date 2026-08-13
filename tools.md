@@ -6,7 +6,15 @@ https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Det
 side-by-side
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/PROMPT-TEMPLATE.md
 
-Stage 2 - https://excalidraw.com/#json=dyt5KjEA7pHwwXXZYJlNB,HsxsQCmUq7KZjp3Lb9VRTw
+Stage 2 - 
+https://github.com/ly2xxx/public-demo/blob/main/coding-engineer-explained.png
+side-by-side
+https://github.com/ly2xxx/langgraph_ollama/blob/feature/agent-loop-reviewed/coding_agent/diary/20260809T140142-c2af2d4e_upgrade-langchain-agent/run-report.md
+
+Source:
+https://github.com/ly2xxx/langgraph_ollama/blob/7a96a181d7dcaae9894db3b877ee99d66db73dff/coding_agent/diary/20260809T140142-c2af2d4e_upgrade-langchain-agent/run-report.md
+
+https://excalidraw.com/#json=dyt5KjEA7pHwwXXZYJlNB,HsxsQCmUq7KZjp3Lb9VRTw
 https://excalidraw.com/#json=KF0owNGCtgbXz0tU42EE8,rIq0mn5vzvCIGLBgeWsmkw
 https://excalidraw.com/#json=C4BaO3VEHIranYY1fTGbw,ZSnet4ECQd_4Vz4DBewqOg
 https://github.com/ly2xxx/langgraph_ollama/tree/feature/agent-loop-reviewed/coding_agent
