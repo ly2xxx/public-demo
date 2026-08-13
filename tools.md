@@ -6,7 +6,7 @@ https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Det
 side-by-side
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/PROMPT-TEMPLATE.md
 
-Stage 2
+Stage 2 - https://excalidraw.com/#json=C4BaO3VEHIranYY1fTGbw,ZSnet4ECQd_4Vz4DBewqOg
 https://github.com/ly2xxx/langgraph_ollama/tree/feature/agent-loop-reviewed/coding_agent
 - [upgrade] https://github.com/ly2xxx/langgraph_ollama/pull/5/changes
 - [breakdown] https://github.com/ly2xxx/langgraph_ollama/pull/3/changes
