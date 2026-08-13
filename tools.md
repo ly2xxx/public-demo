@@ -1,4 +1,5 @@
 whiteboard - [excalidraw.com](https://excalidraw.com/)
+https://excalidraw.com/#json=bz9RxYLTMRfGrCJKPXZ-q,uduOx5cEu3wAKmaFyfgiww
 
 Stage 1
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/DEMO-NARRATIVE.md
