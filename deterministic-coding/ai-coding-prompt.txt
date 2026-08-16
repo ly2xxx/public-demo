@@ -1,0 +1,92 @@
+What's the one noun this is about — the core entity?
+What's the one rule that actually carries complexity? Name it. Everything else is CRUD around it.
+What gets persisted, versus what's just computed and returned?
+Is there a trigger with a side effect (something fires when a condition is met), or is this pure compute with no side effect?
+What am I explicitly not building in the time I have? Say the cut out loud before you paste, not after someone asks.
+
+=================================================================================
+Step 1 — plan only, DESIGN.md, no code
+You are in PLAN-ONLY mode. Do not write any Python code. Do not create .py
+files. Do not scaffold a project structure. Produce ONLY a single file named
+DESIGN.md.
+
+DESIGN.md must be a Clean Architecture / DDD blueprint for the following
+requirement:
+
+<<<PASTE REVEALED REQUIREMENT HERE>>>
+
+Constraints:
+- Domain layer at the centre, pure Python only (dataclasses, enums, stdlib) —
+  zero dependencies on any framework. No Pydantic, no SQLAlchemy, no web or
+  CLI framework imports anywhere in the domain layer.
+- Pydantic v2 models handle all input validation, at the boundary only.
+- SQLAlchemy 2.0 ORM handles persistence, at the boundary only.
+- Package and dependency management via uv.
+- Every field representing money, quantity, or anything where precision
+  matters must use Python's Decimal type. Never float.
+- Name concrete entities, value objects, and layer boundaries explicitly —
+  don't leave the domain model abstract.
+- Strictly keep DESIGN.md UNDER 100 LINES total.
+- DO NOT write full Python implementations. Use high-level signatures or short 3-line class outlines ONLY.
+- Structure DESIGN.md into EXACTLY 4 sections:
+  1. Clean Architecture Boundaries & Directory Layout (including entrypoints/api)
+  2. Domain Core (Entities, Value Objects, Domain Services)
+  3. Boundary Ports, DTOs & Entrypoints (Pydantic, SQLAlchemy, Port, FastAPI)
+  4. Test Strategy & Boundary Matrix
+  
+=================================================================================
+
+Step 2 — still plan only, phase breakdown + DoD
+Continue in PLAN-ONLY mode. Still no Python code, no .py files. Update
+DESIGN.md only.
+
+Break the implementation into no more than four phases. For each phase:
+- Name the target files.
+- Name the unit tests that form its Definition of Done.
+- State a coverage target of at least 75% of core business logic for that
+  phase. Sacrifice cosmetic tests (string reprs, trivial getters,
+  boilerplate) before ever sacrificing a core logic test.
+
+List the four phases in the order they'll be implemented.
+
+=================================================================================
+
+Step 3 — strictly coding, one phase at a time
+Switch to STRICT CODING mode. Do not run any tests. Do not execute pytest,
+uv run pytest, or any other test runner. Write code and test files only,
+then stop. I will run the tests myself.
+
+
+Prerequisite Setup:
+- If `pyproject.toml` does not exist or lacks dev dependencies, create/update `pyproject.toml` using `uv` standards.
+- Include required dependencies: `pydantic`, `sqlalchemy`, `pytest`, `pytest-cov`, `ruff`.
+- Add dependencies as you go along coding to ensure each step's pytest success
+
+Create an empty PHASED.md if one doesn't already exist.
+
+Work through the phases from DESIGN.md one at a time, in order. For each phase:
+1. Implement only that phase's target files.
+2. Write the test files for that phase.
+3. Append an entry to PHASED.md containing:
+   - Status & Target files created/modified.
+   - Summary of implemented business logic.
+   - The EXACT, copy-pasteable terminal verification command (e.g. `uv run pytest tests/domain/ -v`).
+4. Stop. Wait for my review, my test run, and my APPROVE before starting the next phase.
+
+Begin with Phase 1.
+
+=================================================================================
+
+Step 4 — quality gate
+Create a reusable skill named python-quality-gate in this tool's standard
+location for reusable procedures (e.g. .claude/skills/, .agents/skills, or wherever this
+assistant stores them). The skill should:
+
+- Run scoped linting via uv targeting strictly critical errors (unused imports, undefined names, syntax errors):
+  `uv run ruff check . --select E9,F821`
+- Run tests via uv:
+  `uv run pytest tests/ -v --cov=src --cov-report=term-missing`
+- Write QUALITY_REPORT.md at the repo root containing: verdict, lint summary (scoped rule counts), test pass/fail counts, and coverage percentage.
+- Only if both checks are clean, append a "Quality Gate: PASSED" line to PHASED.md. Never write or imply human approval in that line — approval stays a separate, human-authored entry in PHASED.md.
+
+Run the skill now and show me the report.
