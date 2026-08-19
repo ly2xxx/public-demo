@@ -7,14 +7,14 @@ An AI engineering journey, 2023 → today.
 | [demo.md](demo.md) | The journey, one full screenshot per chapter |
 | [demo1.md](demo1.md) | The journey, one-pager beside each chapter's screenshot |
 | [OnePager-LocalFirst-AI-Stack.html](OnePager-LocalFirst-AI-Stack.html) | **Source of truth** for the one-pager |
-| [common-left.png](common-left.png) | **Generated** from that HTML — do not edit by hand |
+| [common-left.png](images/common-left.png) | **Generated** from that HTML — do not edit by hand |
 | [Stack-Structure-CallFlow.md](Stack-Structure-CallFlow.md) | Architecture + call-flow diagrams |
 
 ---
 
 ## Regenerating the one-pager image
 
-`common-left.png` is the left-hand pane in every row of [demo1.md](demo1.md). It is a
+`images/common-left.png` is the left-hand pane in every row of [demo1.md](demo1.md). It is a
 screenshot of `OnePager-LocalFirst-AI-Stack.html`, produced by
 [render_onepager.py](render_onepager.py). **Edit the HTML, then re-render** — never touch
 the PNG directly, it gets overwritten.
@@ -80,7 +80,7 @@ git config core.hooksPath
 
 This setting lives in `.git/config`, which is neither tracked nor cloned, so it must be
 run once **per clone, on every machine**. From then on, any commit that stages
-`OnePager-LocalFirst-AI-Stack.html` re-renders `common-left.png` and stages it
+`OnePager-LocalFirst-AI-Stack.html` re-renders `images/common-left.png` and stages it
 alongside — so the image and its source always land in the same commit. Commits that
 don't touch the HTML are unaffected.
 
@@ -107,8 +107,8 @@ HTML table, which survives sanitizing intact:
 
 ```html
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2023-rag-right.png" alt="2023 RAG chatbot"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2023-rag-right.png" alt="2023 RAG chatbot"></td>
 </tr></table>
 ```
 

@@ -12,8 +12,9 @@ images = [
 ]
 
 for img_name in images:
-    if os.path.exists(img_name):
-        with Image.open(img_name) as img:
+    img_path = os.path.join('images', img_name)
+    if os.path.exists(img_path):
+        with Image.open(img_path) as img:
             print(f"{img_name}: {img.size}")
     else:
         print(f"{img_name}: Not found")

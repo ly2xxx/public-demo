@@ -5,8 +5,8 @@
 ## [2023: RAG Chatbot](https://github.com/ly2xxx/local-rag-ollama/blob/main/rag.py)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2023-rag-right.png" alt="2023 RAG chatbot"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2023-rag-right.png" alt="2023 RAG chatbot"></td>
 </tr></table>
 
 ---
@@ -14,8 +14,8 @@
 ## [2024: Multi-Agent Flows](https://github.com/ly2xxx/langgraph_ollama/blob/main/rag_research_chatbot.py)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2024-agent-right.png" alt="2024 multi-agent flows"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2024-agent-right.png" alt="2024 multi-agent flows"></td>
 </tr></table>
 
 ---
@@ -23,8 +23,8 @@
 ## [2025: Open Tool Standard (MCP)](https://github.com/ly2xxx/md-mcp)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2025-mcp-right.png" alt="2025 open tool standard (MCP)"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2025-mcp-right.png" alt="2025 open tool standard (MCP)"></td>
 </tr></table>
 
 ---
@@ -32,8 +32,8 @@
 ## [2026: Observability](https://github.com/ly2xxx/langgraph_ollama/blob/main/IMPLEMENTATION_GUIDE.md)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2026-obs-right.png" alt="2026 observability"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2026-obs-right.png" alt="2026 observability"></td>
 </tr></table>
 
 ---
@@ -41,8 +41,8 @@
 ## [2026: Observability Dashboards](https://github.com/ly2xxx/langgraph_ollama/blob/main/docker-compose.observability.yml)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2026-obs2-right.png" alt="2026 observability dashboards"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2026-obs2-right.png" alt="2026 observability dashboards"></td>
 </tr></table>
 
 ---
@@ -50,8 +50,8 @@
 ## [2026: Evaluation & BDD](https://github.com/ly2xxx/md-mcp/blob/feature/otel/sample-client/PYTEST-BDD.md)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2026-eval-right.png" alt="2026 evaluation & BDD"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2026-eval-right.png" alt="2026 evaluation & BDD"></td>
 </tr></table>
 
 ---
@@ -59,8 +59,8 @@
 ## [2026: Agent Harness](https://github.com/ly2xxx/langgraph_ollama/blob/main/coding_agent/README.md)
 
 <table><tr>
-<td width="50%"><img src="common-left.png" alt="The journey one-pager"></td>
-<td width="50%"><img src="2026-code-agent-right.png" alt="2026 coding agent harness"></td>
+<td width="50%"><img src="images/common-left.png" alt="The journey one-pager"></td>
+<td width="50%"><img src="images/2026-code-agent-right.png" alt="2026 coding agent harness"></td>
 </tr></table>
 
 

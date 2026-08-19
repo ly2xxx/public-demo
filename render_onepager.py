@@ -14,7 +14,7 @@ from PIL import Image, ImageChops
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'OnePager-LocalFirst-AI-Stack.html')
-OUT = os.path.join(HERE, 'common-left.png')
+OUT = os.path.join(HERE, 'images', 'common-left.png')
 
 WIDTH = 1005          # CSS px; matches the layout the .md pages were built around
 MAX_HEIGHT = 1600     # tall canvas, trimmed down to the content afterwards

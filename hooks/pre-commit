@@ -11,5 +11,5 @@ if git diff --cached --name-only | grep -q '^OnePager-LocalFirst-AI-Stack\.html$
     python render_onepager.py || exit 1
   fi
 
-  git add common-left.png
+  git add images/common-left.png
 fi

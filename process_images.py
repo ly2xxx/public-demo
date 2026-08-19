@@ -31,16 +31,18 @@ def find_split_point(img):
     return best_x
 
 # Extract common left from 2026-obs2.png
-base_img_name = '2026-obs2.png'
+img_dir = 'images'
+base_img_name = os.path.join(img_dir, '2026-obs2.png')
 if os.path.exists(base_img_name):
     with Image.open(base_img_name).convert('RGB') as img:
         split_x = find_split_point(img)
         left_img = img.crop((0, 0, split_x, img.height))
-        left_img.save('common-left.png')
+        left_img.save(os.path.join(img_dir, 'common-left.png'))
         print(f"Saved common-left.png (split at {split_x})")
 
 # Process all right halves
-for img_name in images:
+for img_name_raw in images:
+    img_name = os.path.join(img_dir, img_name_raw)
     if os.path.exists(img_name):
         with Image.open(img_name).convert('RGB') as img:
             split_x = find_split_point(img)
