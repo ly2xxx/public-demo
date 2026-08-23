@@ -1,8 +1,5 @@
 # langgraph_ollama × md-mcp — Structure & Call Flow (as the code actually is)
 
-> Drawn from source audit 14 Jul 2026: `app.py`, `rag_research_chatbot.py`, `tools/mcp_notes.py`, `tools/rag.py`, `telemetry.py` (langgraph_ollama) · `server.py`, `scanner.py`, `chunking.py`, `semantic.py`, `telemetry.py` (md_mcp).
-> Use: your own deep-dive reference if Ross asks "so how does it actually work?" — every box below exists in code.
-
 ## 1 · Structure (static view)
 
 ```mermaid
