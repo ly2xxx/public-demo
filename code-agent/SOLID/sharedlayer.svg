@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 560" width="1080" height="560" role="img" aria-label="Two panels. Left: three pipelines each importing three shared components directly, nine crossing arrows. Right: the same three pipelines depending on a single contract layer, which resolves to the same three components.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7684"/>
+    </marker>
+    <marker id="ahd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2933"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="560" fill="#ffffff"/>
+
+  <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+
+    <text x="30" y="38" font-size="18" font-weight="700" fill="#1f2933">Twenty pipelines only hurt where they share something</text>
+    <text x="30" y="60" font-size="12.5" fill="#6b7684">The count is not the variable. The shared surface is — and whether anything stands in front of it.</text>
+
+    <!-- PANEL A -->
+    <rect x="30" y="78" width="500" height="452" rx="10" fill="#fbfbfc" stroke="#dde1e6"/>
+    <text x="52" y="108" font-size="13.5" font-weight="700" fill="#1f2933">Reached directly</text>
+    <text x="52" y="126" font-size="11.5" fill="#6b7684">what sprawl actually is</text>
+
+    <!-- lanes A -->
+    <g>
+      <rect x="55" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="125" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline A</text>
+      <text x="125" y="182" font-size="10" fill="#6b7684" text-anchor="middle">feature build</text>
+
+      <rect x="210" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="280" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline B</text>
+      <text x="280" y="182" font-size="10" fill="#6b7684" text-anchor="middle">bug triage</text>
+
+      <rect x="365" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="435" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline C</text>
+      <text x="435" y="182" font-size="10" fill="#6b7684" text-anchor="middle">migration</text>
+    </g>
+
+    <!-- tangle -->
+    <g stroke="#6b7684" stroke-width="1" opacity="0.55" marker-end="url(#ah)" fill="none">
+      <line x1="125" y1="192" x2="125" y2="330"/>
+      <line x1="125" y1="192" x2="280" y2="330"/>
+      <line x1="125" y1="192" x2="435" y2="330"/>
+      <line x1="280" y1="192" x2="125" y2="330"/>
+      <line x1="280" y1="192" x2="280" y2="330"/>
+      <line x1="280" y1="192" x2="435" y2="330"/>
+      <line x1="435" y1="192" x2="125" y2="330"/>
+      <line x1="435" y1="192" x2="280" y2="330"/>
+      <line x1="435" y1="192" x2="435" y2="330"/>
+    </g>
+    <text x="505" y="266" font-size="10.5" fill="#6b7684" text-anchor="end">imports, calls, reads</text>
+
+    <!-- impls A -->
+    <g>
+      <rect x="55" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#c0392b" stroke-width="1.6"/>
+      <text x="125" y="357" font-size="12" font-weight="600" fill="#c0392b" text-anchor="middle">retriever</text>
+      <text x="125" y="372" font-size="10" fill="#c0392b" text-anchor="middle">you change this today</text>
+
+      <rect x="210" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#9aa3ad"/>
+      <text x="280" y="357" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">prompt store</text>
+      <text x="280" y="372" font-size="10" fill="#6b7684" text-anchor="middle">concrete impl</text>
+
+      <rect x="365" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#9aa3ad"/>
+      <text x="435" y="357" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">model client</text>
+      <text x="435" y="372" font-size="10" fill="#6b7684" text-anchor="middle">concrete impl</text>
+    </g>
+
+    <text x="55" y="418" font-size="10" font-weight="700" fill="#9aa3ad" letter-spacing="1.2">WHEN SOMETHING CHANGES</text>
+    <g font-size="12" fill="#1f2933">
+      <circle cx="60" cy="440" r="3" fill="#c0392b"/>
+      <text x="72" y="444">add a tool — edit every pipeline that uses it</text>
+      <circle cx="60" cy="468" r="3" fill="#c0392b"/>
+      <text x="72" y="472">swap the retriever — re-verify all of them</text>
+      <circle cx="60" cy="496" r="3" fill="#c0392b"/>
+      <text x="72" y="500">tweak one prompt — behaviour moves in three</text>
+    </g>
+
+    <!-- PANEL B -->
+    <rect x="550" y="78" width="500" height="452" rx="10" fill="#fbfbfc" stroke="#dde1e6"/>
+    <text x="572" y="108" font-size="13.5" font-weight="700" fill="#1f2933">Reached through a contract</text>
+    <text x="572" y="126" font-size="11.5" fill="#6b7684">what SOLID asks for</text>
+
+    <!-- lanes B -->
+    <g>
+      <rect x="575" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="645" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline A</text>
+      <text x="645" y="182" font-size="10" fill="#6b7684" text-anchor="middle">feature build</text>
+
+      <rect x="730" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="800" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline B</text>
+      <text x="800" y="182" font-size="10" fill="#6b7684" text-anchor="middle">bug triage</text>
+
+      <rect x="885" y="146" width="140" height="46" rx="8" fill="#ffffff" stroke="#1f2933"/>
+      <text x="955" y="167" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">Pipeline C</text>
+      <text x="955" y="182" font-size="10" fill="#6b7684" text-anchor="middle">migration</text>
+    </g>
+
+    <g stroke="#1f2933" stroke-width="1.2" marker-end="url(#ahd)" fill="none">
+      <line x1="645" y1="192" x2="645" y2="242"/>
+      <line x1="800" y1="192" x2="800" y2="242"/>
+      <line x1="955" y1="192" x2="955" y2="242"/>
+    </g>
+    <text x="660" y="222" font-size="10.5" fill="#6b7684">declares what it needs</text>
+
+    <!-- seam -->
+    <rect x="575" y="248" width="450" height="52" rx="8" fill="#eaf4f2" stroke="#157a6e" stroke-width="1.6"/>
+    <text x="800" y="272" font-size="13" font-weight="700" fill="#157a6e" text-anchor="middle">Contract layer</text>
+    <text x="800" y="289" font-size="10.5" fill="#157a6e" text-anchor="middle">tool registry · retrieval interface · prompt store API</text>
+
+    <g stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#ah)" fill="none">
+      <line x1="645" y1="300" x2="645" y2="330"/>
+      <line x1="800" y1="300" x2="800" y2="330"/>
+      <line x1="955" y1="300" x2="955" y2="330"/>
+    </g>
+    <text x="668" y="322" font-size="10.5" fill="#6b7684">resolves to</text>
+
+    <!-- impls B -->
+    <g>
+      <rect x="575" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#157a6e"/>
+      <text x="645" y="357" font-size="12" font-weight="600" fill="#157a6e" text-anchor="middle">retriever</text>
+      <text x="645" y="372" font-size="10" fill="#157a6e" text-anchor="middle">you change this today</text>
+
+      <rect x="730" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#9aa3ad"/>
+      <text x="800" y="357" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">prompt store</text>
+      <text x="800" y="372" font-size="10" fill="#6b7684" text-anchor="middle">concrete impl</text>
+
+      <rect x="885" y="336" width="140" height="46" rx="8" fill="#ffffff" stroke="#9aa3ad"/>
+      <text x="955" y="357" font-size="12" font-weight="600" fill="#1f2933" text-anchor="middle">model client</text>
+      <text x="955" y="372" font-size="10" fill="#6b7684" text-anchor="middle">concrete impl</text>
+    </g>
+
+    <text x="575" y="418" font-size="10" font-weight="700" fill="#9aa3ad" letter-spacing="1.2">WHEN SOMETHING CHANGES</text>
+    <g font-size="12" fill="#1f2933">
+      <circle cx="580" cy="440" r="3" fill="#157a6e"/>
+      <text x="592" y="444">add a tool — register it once <tspan fill="#6b7684" font-size="10.5">(Open/Closed)</tspan></text>
+      <circle cx="580" cy="468" r="3" fill="#157a6e"/>
+      <text x="592" y="472">swap the retriever — contract holds <tspan fill="#6b7684" font-size="10.5">(Liskov, DIP)</tspan></text>
+      <circle cx="580" cy="496" r="3" fill="#157a6e"/>
+      <text x="592" y="500">one prompt, one owner <tspan fill="#6b7684" font-size="10.5">(Single Responsibility)</tspan></text>
+    </g>
+
+  </g>
+</svg>
