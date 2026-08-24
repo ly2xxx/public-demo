@@ -1,6 +1,9 @@
 whiteboard - [excalidraw.com](https://excalidraw.com/)
 https://excalidraw.com/#json=bz9RxYLTMRfGrCJKPXZ-q,uduOx5cEu3wAKmaFyfgiww
 
+Cheatsheet:
+https://github.com/ly2xxx/interview-code/blob/main/AI/Applied-AI/Tutorials/interview-agent.png
+
 Stage 1
 https://github.com/ly2xxx/interview-prep/blob/main/notes/YL-notes/interviews/Detillens/DEMO-NARRATIVE.md
 side-by-side
