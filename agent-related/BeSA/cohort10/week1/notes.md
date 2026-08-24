@@ -1,4 +1,3 @@
-
 A software system that acts on behalf of a user or organization by using AI to make decisions and perform tasks.
 
 AI model -> intelligence
@@ -81,11 +80,11 @@ Lab 4: authenticate -> generate tokens CloudFormation->Stacks->Prerequisites
 
 Lab 5: Run on-demand evaluation might give error
 
-aws lambda invoke 
-  --function-name $WARRANTY_LAMBDA_ARN 
-  --region us-east-1 
-  --payload '{"product_id": "PROD-001"}' 
-  --cli-binary-format raw-in-base64-out 
+aws lambda invoke
+  --function-name $WARRANTY_LAMBDA_ARN
+  --region us-east-1
+  --payload '{"product_id": "PROD-001"}'
+  --cli-binary-format raw-in-base64-out
   output.json && cat output.json
 
 Agents
@@ -235,9 +234,11 @@ agentcore evals history --runtime CustomerSupport --limit 5
 https://d2q9dr7th9rq1x.cloudfront.net/ports/8501/
 
 cd /home/participant/workshop
-zip -r ~/workshop-backup.zip CustomerSupport/ 
-  --exclude "CustomerSupport/app/CustomerSupport/.venv/*" 
-  --exclude "CustomerSupport/agentcore/.cache/*" 
-  --exclude "CustomerSupport/agentcore/.cli/logs/*" 
-  --exclude "*/__pycache__/*" 
+zip -r ~/workshop-backup.zip CustomerSupport/
+  --exclude "CustomerSupport/app/CustomerSupport/.venv/*"
+  --exclude "CustomerSupport/agentcore/.cache/*"
+  --exclude "CustomerSupport/agentcore/.cli/logs/*"
+  --exclude "*/__pycache__/*"
   --exclude "*.pyc"
+
+![1787597490071](image/notes/1787597490071.pdf)
