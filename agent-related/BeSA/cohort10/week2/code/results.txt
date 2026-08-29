@@ -1,0 +1,4 @@
+Event Bus: merged-multi-agent-workshop-multi-agent-bus
+Planner Function: arn:aws:lambda:us-west-2:804547487096:function:merged-multi-agent-workshop-planner-agent
+Weather Function: arn:aws:lambda:us-west-2:804547487096:function:merged-multi-agent-workshop-weather-agent
+Flight Function: arn:aws:lambda:us-west-2:804547487096:function:merged-multi-agent-workshop-flight-manager-agent
