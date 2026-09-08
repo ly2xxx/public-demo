@@ -1,0 +1,67 @@
+Five Framing Questions:
+1. What's the core entity? AnalyzedText / AnalysisResult.
+2. What rule carries complexity? Pluggable analyzer strategies (Strategy/Protocol) and strict input boundary limits (max payload/char length)[cite: 6].
+3. What gets persisted vs computed? Pure compute (stateless REST API returning structured JSON)[cite: 6].
+4. Trigger with side effects or pure compute? Pure compute with structured request/response logging[cite: 5, 6].
+5. What am I explicitly not building? Databases, ORM layers, heavy ML dependencies, or frontend UI[cite: 6].
+
+=================================================================================
+Step 1 — plan only, DESIGN.md, no code
+You are in PLAN-ONLY mode. Do not write any Python code. Do not create .py
+files. Do not scaffold a project structure. Produce ONLY a single file named
+DESIGN.md.
+
+DESIGN.md must be a lean, production-grade blueprint for the following requirement:
+
+Build a stateless String Analysis REST API in Python (FastAPI)[cite: 5, 6]:
+1. Input Submission: Accepts raw text in POST request body with enforced max character/byte size (configurable, default 1MB)[cite: 6].
+2. Analysis Options: Supports dynamic analyzer selection via query parameters (e.g. ?analyses=word_count,character_count,frequency,reading_time)[cite: 6].
+3. Response Format: Clean, typed JSON payload[cite: 6].
+4. Production Ready: Multi-stage Dockerfile[cite: 5, 6], structured JSON logging, pytest suite[cite: 5], and an extensible Strategy pattern for analyzers.
+
+Constraints:
+- Lean Architecture: Stateless service. No database, no ORM, no repositories, no complex aggregates.
+- Domain Layer: Pure Python (dataclasses, enums, typing.Protocol) — zero framework dependencies[cite: 7].
+- Strategy Pattern: Analyzers adhere to a lightweight pure-Python Protocol (e.g., AnalyzerStrategy) so new analyses can be plugged in without modifying routing.
+- Boundary Layer: FastAPI and Pydantic v2 sit strictly at the HTTP entrypoint adapter layer[cite: 5, 7].
+- Tooling: Package and dependency management via uv[cite: 7].
+- Keep DESIGN.md UNDER 60 LINES total.
+- Structure DESIGN.md into EXACTLY 3 sections:
+  1. Directory Layout & Module Responsibilities
+  2. Domain Protocol & Core Analyzers
+  3. API Entrypoint & Test Strategy
+
+=================================================================================
+Step 2 — still plan only, phase breakdown + DoD
+Continue in PLAN-ONLY mode. Still no Python code. Update DESIGN.md only.
+
+Break the implementation into 2 concise phases:
+- Phase 1: Domain Core & Strategy Analyzers (Protocol, WordCount, CharCount, FrequencyMap, ReadingTime, and pure unit tests).
+- Phase 2: FastAPI Entrypoint, Boundary Validation & Docker Packaging (Pydantic DTOs, query param router, /analyze & /health endpoints, integration tests, Dockerfile)[cite: 5, 6].
+
+For each phase:
+- Target files to create.
+- Unit/Integration tests forming the Definition of Done.
+- Minimum 85% coverage target on core analysis logic.
+
+=================================================================================
+Step 3 — strictly coding, one phase at a time
+Switch to STRICT CODING mode. Do not run any tests. Write code and test files only,
+then stop. I will run the tests myself[cite: 1, 7].
+
+Prerequisite Setup:
+- Create/update pyproject.toml with uv: fastapi, uvicorn, pydantic, pytest, pytest-cov, ruff, httpx[cite: 5].
+- Create empty PHASED.md.
+
+Work through the phases one at a time. For each phase:
+1. Implement target files.
+2. Write unit/integration tests[cite: 5].
+3. Append status and terminal verification command (e.g., uv run pytest tests/ -v) to PHASED.md.
+4. Stop and wait for my review and APPROVE.
+
+Begin with Phase 1.
+
+=================================================================================
+Step 4 — quality gate
+Run scoped linting (`uv run ruff check . --select E9,F821`) and test coverage (`uv run pytest tests/ -v --cov=src`)[cite: 7].
+Generate QUALITY_REPORT.md and append "Quality Gate: PASSED" to PHASED.md if clean[cite: 1, 7].
