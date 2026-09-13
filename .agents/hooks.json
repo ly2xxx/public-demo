@@ -1,0 +1,25 @@
+﻿{
+  "frozen-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "replace_file_content|multi_replace_file_content|write_to_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python hooks/frozen_guard.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "scope-report": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python hooks/scope_report.py",
+        "timeout": 30
+      }
+    ]
+  }
+}
