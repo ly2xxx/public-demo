@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+# Images are tagged with the git SHA, never `latest`, so a rollback is a real
+# rollback. scripts/build_and_import.sh rewrites these two tags.
+images:
+  - name: localhost/ai-sdlc/coding-engineer
+    newTag: GIT_SHA
+  - name: localhost/ai-sdlc/eval-harness
+    newTag: GIT_SHA
+
+patches:
+  # A laptop cluster does not need a 5Gi audit volume.
+  - target:
+      kind: StatefulSet
+      name: postgres
+    patch: |-
+      - op: replace
+        path: /spec/volumeClaimTemplates/0/spec/resources/requests/storage
+        value: 1Gi

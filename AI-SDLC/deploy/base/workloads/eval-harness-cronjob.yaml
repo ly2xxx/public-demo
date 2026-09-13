@@ -1,0 +1,67 @@
+# The model-upgrade regression gate.
+#
+# Runs the frozen golden task set against whatever the gateway currently
+# routes `maker` to, scores it with `judge`, and writes the result to
+# Postgres for the drift panel. This is the answer to "how do you know the
+# tooling still works after a model upgrade" — it is a cron job, not a
+# promise.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: eval-harness
+  namespace: ai-sdlc
+  labels:
+    app.kubernetes.io/name: eval-harness
+    app.kubernetes.io/component: eval
+    app.kubernetes.io/part-of: ai-sdlc
+spec:
+  schedule: "0 2 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 7
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 3600
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: eval-harness
+            app.kubernetes.io/component: eval
+        spec:
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            fsGroup: 1000
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: eval-harness
+              image: localhost/ai-sdlc/eval-harness:GIT_SHA
+              imagePullPolicy: IfNotPresent
+              args: ["--golden", "/etc/golden", "--baseline", "/etc/golden/baseline.json"]
+              env:
+                - name: OPENAI_API_KEY
+                  valueFrom:
+                    secretKeyRef: { name: litellm-virtual-keys, key: eval-harness }
+                - name: OPENAI_BASE_URL
+                  value: http://litellm.ai-platform.svc.cluster.local:4000/v1
+                - name: JUDGE_MODEL
+                  value: judge
+              volumeMounts:
+                - name: golden
+                  mountPath: /etc/golden
+                  readOnly: true
+              resources:
+                requests: { cpu: 200m, memory: 512Mi }
+                limits: { cpu: "2", memory: 2Gi }
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop: ["ALL"]
+          volumes:
+            - name: golden
+              configMap:
+                name: golden-task-set

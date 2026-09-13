@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: ai-platform
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: audit
+    app.kubernetes.io/part-of: ai-sdlc
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: audit
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+        fsGroup: 999
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: postgres
+          image: postgres:17.2-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: postgres
+              containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: litellm
+            - name: POSTGRES_DB
+              value: litellm
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: postgres-secrets, key: password }
+            # The image refuses a non-empty mount it does not own; giving the
+            # data a subdirectory of the volume avoids fighting lost+found.
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { cpu: "1", memory: 1Gi }
+          startupProbe:
+            exec: { command: ["pg_isready", "-U", "litellm"] }
+            periodSeconds: 3
+            failureThreshold: 30
+          livenessProbe:
+            exec: { command: ["pg_isready", "-U", "litellm"] }
+            periodSeconds: 15
+          readinessProbe:
+            exec: { command: ["pg_isready", "-U", "litellm"] }
+            periodSeconds: 10
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop: ["ALL"]
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi

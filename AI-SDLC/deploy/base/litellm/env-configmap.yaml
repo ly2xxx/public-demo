@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litellm-env
+  namespace: ai-platform
+  labels:
+    app.kubernetes.io/part-of: ai-sdlc
+data:
+  # Host-mapped Ollama gateway. On k3s/Rancher Desktop the node's host is
+  # reachable at this address; override in the overlay for a real endpoint.
+  ollama-base-url: "http://host.k3d.internal:11434"

@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespaces.yaml
+  - litellm/deployment.yaml
+  - litellm/service.yaml
+  - litellm/env-configmap.yaml
+  - postgres/statefulset.yaml
+  - postgres/service.yaml
+  - redis/deployment.yaml
+  - redis/service.yaml
+  - workloads/eval-harness-cronjob.yaml
+
+# Deliberately NOT in resources:
+#   */secret.example.yaml       templates; the real Secrets are created out-of-band
+#   workloads/coding-engineer-job.yaml  templated per run by scripts/run.sh
+
+configMapGenerator:
+  - name: litellm-config
+    namespace: ai-platform
+    files:
+      - config.yaml=../../litellm/config.yaml
+  - name: golden-task-set
+    namespace: ai-sdlc
+    files:
+      - baseline.json=../../eval/golden/baseline.json
+      - tasks.yaml=../../eval/golden/tasks.yaml
+
+# Hash suffixes are the point: editing the routing config produces a new
+# ConfigMap name, which rolls the Deployment. Without this, "swap the model"
+# appears to do nothing until something unrelated restarts the pod.
+generatorOptions:
+  disableNameSuffixHash: false
+
+labels:
+  - includeSelectors: false
+    pairs:
+      app.kubernetes.io/part-of: ai-sdlc

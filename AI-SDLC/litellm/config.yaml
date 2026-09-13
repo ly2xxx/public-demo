@@ -1,0 +1,89 @@
+# LiteLLM routing for the AI-SDLC control plane.
+#
+# Callers ask for a ROLE, never a model. `maker` writes the code, `checker`
+# reviews it, `judge` scores the nightly eval. Mapping those to concrete models
+# here — rather than in each caller's environment — is what makes two claims
+# true by deployment rather than by convention:
+#
+#   1. maker != checker. A caller cannot accidentally review its own output,
+#      because it has no way to name the model behind either role.
+#   2. Swapping a model is a ConfigMap edit, which is exactly the change the
+#      nightly eval gate exists to catch before it reaches anyone.
+#
+# tests/test_config.py asserts both, so a careless edit fails on a laptop.
+
+model_list:
+  # ---- maker: writes code. Higher capability, higher cost. -----------------
+  - model_name: maker
+    litellm_params:
+      model: ollama_chat/glm-5.2:cloud
+      api_base: os.environ/OLLAMA_BASE_URL
+      timeout: 600
+      temperature: 0.2
+    model_info:
+      role: maker
+      description: Primary code author in the coding-engineer loop.
+
+  # ---- checker: adversarial review. Must differ from maker. ----------------
+  - model_name: checker
+    litellm_params:
+      model: ollama_chat/qwen3.5:cloud
+      api_base: os.environ/OLLAMA_BASE_URL
+      timeout: 300
+      temperature: 0.0
+    model_info:
+      role: checker
+      description: Adversarial reviewer. Audits step definitions for trivial passes.
+
+  # ---- judge: eval scoring. Low temperature, separate budget. --------------
+  - model_name: judge
+    litellm_params:
+      model: ollama_chat/qwen3.5:cloud
+      api_base: os.environ/OLLAMA_BASE_URL
+      timeout: 300
+      temperature: 0.0
+    model_info:
+      role: judge
+      description: Scores the frozen golden task set. Never used inside a run.
+
+  # ---- embed: retrieval only. ---------------------------------------------
+  - model_name: embed
+    litellm_params:
+      model: ollama/nomic-embed-text
+      api_base: os.environ/OLLAMA_BASE_URL
+    model_info:
+      role: embed
+      description: Document and query embeddings for the knowledge plane.
+
+litellm_settings:
+  drop_params: true
+  # Spend and prompt metadata land in Postgres, not in pod logs. Logs rotate;
+  # an audit trail has to outlive the pod that produced it.
+  success_callback: ["postgres"]
+  failure_callback: ["postgres"]
+  redact_user_api_key_info: true
+  # Cluster-wide ceiling. Per-team ceilings are on the virtual keys below and
+  # are the ones that actually bite during the demo.
+  max_budget: 100.0
+  budget_duration: 30d
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL
+  store_model_in_db: true
+  # Fail closed. A key over budget gets 429 and the coding-engineer Job
+  # escalates rather than proceeding — the opposite choice from rate limiting,
+  # where availability wins. Both directions are deliberate.
+  enforce_user_param: false
+  alerting: ["webhook"]
+
+# ---------------------------------------------------------------------------
+# Virtual keys are created at runtime through /key/generate, not from this
+# file — scripts/seed_keys.sh reads this block and calls the API, so the
+# budgets stay reviewable in git while the secrets never enter it.
+#
+# team_budgets:
+#   platform-eng:   { max_budget: 25.00, models: [maker, checker, embed] }
+#   wealth-planning:{ max_budget: 10.00, models: [maker, checker] }
+#   eval-harness:   { max_budget:  5.00, models: [judge] }
+# ---------------------------------------------------------------------------
