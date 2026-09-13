@@ -16,6 +16,10 @@ observed. Anything believed-but-unverified is written as a deviation, not a tick
 
 ## Phase 1 — Manifests, routing, gate ✅
 
+<!-- phase: 1 -->
+<!-- targets: AI-SDLC/deploy/**/*.yaml, AI-SDLC/litellm/*.yaml, AI-SDLC/gate/*.py, AI-SDLC/tests/*.py, AI-SDLC/eval/golden/*, AI-SDLC/scripts/*.sh, AI-SDLC/docker/*, AI-SDLC/*.md, AI-SDLC/.gitignore -->
+<!-- frozen: -->
+
 **Capability:** everything that can be made correct without a cluster, made
 correct and asserted by a test that runs on a laptop.
 
