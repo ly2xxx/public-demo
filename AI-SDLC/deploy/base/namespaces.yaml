@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-platform
+  labels:
+    app.kubernetes.io/part-of: ai-sdlc
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-sdlc
+  labels:
+    app.kubernetes.io/part-of: ai-sdlc
+    pod-security.kubernetes.io/enforce: restricted
+---
+# The central claim of this cluster, expressed as policy rather than prose:
+# workloads in ai-sdlc reach models only through the gateway. Everything else
+# is denied, so a hard-coded api.openai.com in an agent's tool cannot work
+# even if nobody notices it in review.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-direct-model-egress
+  namespace: ai-sdlc
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ai-platform
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: litellm
+      ports:
+        - { protocol: TCP, port: 4000 }
+    # The in-cluster git server, so a finished run can push its branch.
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: git
+      ports:
+        - { protocol: TCP, port: 3000 }
+---
+# The gateway is the only thing allowed out, and only on HTTPS.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-gateway-egress
+  namespace: ai-platform
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: litellm
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+    - ports:
+        - { protocol: TCP, port: 443 }
+        - { protocol: TCP, port: 11434 }
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+      ports:
+        - { protocol: TCP, port: 5432 }

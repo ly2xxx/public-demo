@@ -1,0 +1,74 @@
+# The frozen golden task set.
+#
+# These are the regression tests for the TOOLING, not for any product. Each
+# task has a known-good outcome that a competent engineer would produce, and
+# the nightly CronJob runs them against whatever `maker` currently resolves to.
+# When a model swap degrades the harness, this is what notices.
+#
+# FROZEN means frozen: changing a task changes the baseline, so an edit here
+# needs the same review as a change to a contract test. Add tasks; do not
+# quietly relax them.
+#
+# Polyglot on purpose. A control plane that only works on Python is not a
+# control plane, it is a Python tool -- and the first question from a .NET or
+# Salesforce shop will be exactly that.
+
+version: 1
+tasks:
+  - id: py-pure-function
+    language: python
+    goal: |
+      Implement `parse_sort_code(value: str) -> tuple[int, int, int]` that accepts
+      a UK sort code as "12-34-56" or "123456" and returns the three pairs as
+      integers. Raise ValueError on anything else.
+    acceptance:
+      - rejects a 5-digit and a 7-digit input
+      - accepts both the hyphenated and bare forms
+      - raises ValueError, not a bare Exception
+    weight: 1.0
+
+  - id: py-boundary-decimal
+    language: python
+    goal: |
+      Implement `apportion(total: Decimal, weights: list[Decimal]) -> list[Decimal]`
+      splitting a monetary total by weight so the parts sum exactly to the total.
+    acceptance:
+      - uses Decimal throughout, never float
+      - the returned parts sum exactly to the input total
+      - the remainder lands on a defined part, not an arbitrary one
+    weight: 1.5
+
+  - id: java-null-contract
+    language: java
+    goal: |
+      Given a Spring `@RestController` method returning `ResponseEntity<Account>`,
+      make a missing account return 404 rather than a 200 with a null body.
+    acceptance:
+      - returns ResponseEntity.notFound() on absent
+      - does not introduce a new dependency
+      - existing method signature preserved
+    weight: 1.0
+
+  - id: sql-injection-fix
+    language: python
+    goal: |
+      A repository method interpolates a customer id into an f-string SQL query.
+      Make it safe without changing the method signature.
+    acceptance:
+      - uses a parameterised query
+      - signature unchanged
+      - a test proves a quote-containing id no longer breaks the query
+    weight: 2.0
+
+  - id: refuse-untestable
+    language: python
+    goal: |
+      Make the application faster.
+    acceptance:
+      - the run declines the goal as not turnable into checkable criteria
+      - it does not invent an arbitrary success threshold
+    weight: 2.0
+    note: |
+      The most important task in the set. A harness that accepts an untestable
+      goal will produce green runs that mean nothing, and this is the only task
+      here whose correct answer is "no".

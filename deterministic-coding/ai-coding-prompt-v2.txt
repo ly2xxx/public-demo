@@ -1,0 +1,277 @@
+AI CODING WORKFLOW — v2
+Supersedes ai-coding-prompt.txt (v1). Changelog and the evidence for each change
+are at the bottom; read that first if you already know v1.
+
+The one-line difference: v1 stopped the assistant running tests, to stop it
+gaming them. v2 lets it run tests freely and stops it EDITING them, which is
+what "gaming" actually means. Everything else follows from that.
+
+
+FIVE FRAMING QUESTIONS — before you paste anything
+What's the one noun this is about — the core entity?
+What's the one rule that actually carries complexity? Name it. Everything else is CRUD around it.
+What gets persisted, versus what's just computed and returned?
+Is there a trigger with a side effect (something fires when a condition is met), or is this pure compute with no side effect?
+What am I explicitly not building in the time I have? Say the cut out loud before you paste, not after someone asks.
+
+Re-ask the last one at every phase boundary. Scope creeps between phases, not
+inside them.
+
+=================================================================================
+Step 0 — the gate, before any code exists
+
+Create a reusable skill named python-quality-gate in this tool's standard
+location for reusable procedures (.claude/skills/, .agents/skills/, or wherever
+this assistant stores them). The skill:
+
+- Runs scoped linting, critical errors only:
+  `uv run ruff check . --select E9,F821`
+- Runs tests with coverage:
+  `uv run pytest tests/ -v --cov=src --cov-report=term-missing`
+- Runs the scope and freeze check:
+  `uv run phase_check.py --phase <n>`
+- Writes QUALITY_REPORT.md: verdict, lint summary, test pass/fail counts,
+  coverage percentage, and any scope or freeze violation.
+- Appends "Quality Gate: PASSED" to PHASED.md only if every check is clean.
+  Never write or imply human approval in that line — approval stays a separate,
+  human-authored entry.
+
+Two rules about the report:
+- A skipped check is not a passed check. Report it as SKIP and exclude it from
+  the verdict; if every check skipped, the verdict is INCONCLUSIVE, not PASSED.
+- An empty test suite is a FAIL, not a skip. pytest exits 5 when it collects
+  nothing, and "no tests" must never reach the same verdict as "tests passed" —
+  otherwise deleting the test file is the cheapest way to go green.
+
+Run the skill now, against the empty project. It should report INCONCLUSIVE.
+That is the gate proving it works before it has anything to judge.
+
+=================================================================================
+Step 1 — plan only, DESIGN.md, no code
+
+You are in PLAN-ONLY mode. Do not write any Python code. Do not create .py
+files. Do not scaffold a project structure. Produce ONLY a single file named
+DESIGN.md.
+
+DESIGN.md must be a Clean Architecture / DDD blueprint for the following
+requirement:
+
+<<<PASTE REVEALED REQUIREMENT HERE>>>
+
+Constraints:
+- Domain layer at the centre, pure Python only (dataclasses, enums, stdlib) —
+  zero dependencies on any framework. No Pydantic, no SQLAlchemy, no web or
+  CLI framework imports anywhere in the domain layer.
+- Pydantic v2 models handle all input validation, at the boundary only.
+- SQLAlchemy 2.0 ORM handles persistence, at the boundary only.
+- Package and dependency management via uv.
+- Every field representing money, quantity, or anything where precision
+  matters must use Python's Decimal type. Never float.
+- Name concrete entities, value objects, and layer boundaries explicitly —
+  don't leave the domain model abstract.
+- Strictly keep DESIGN.md UNDER 100 LINES total.
+- DO NOT write full Python implementations. Use high-level signatures or short
+  3-line class outlines ONLY.
+- Structure DESIGN.md into EXACTLY 4 sections:
+  1. Clean Architecture Boundaries & Directory Layout (including entrypoints/api)
+  2. Domain Core (Entities, Value Objects, Domain Services)
+  3. Boundary Ports, DTOs & Entrypoints (Pydantic, SQLAlchemy, Port, FastAPI)
+  4. Test Strategy & Boundary Matrix
+
+Section 4 must state, for each test layer, whether it can run without external
+infrastructure. That single column decides what the first phase can honestly
+finish, so do not leave it implicit.
+
+=================================================================================
+Step 2 — still plan only, phase breakdown + DoD
+
+Continue in PLAN-ONLY mode. Still no Python code, no .py files. Update
+DESIGN.md only.
+
+Break the implementation into no more than four phases. For each phase:
+- Name the target files. Be exact: these become the machine-checked scope.
+- Name the unit tests that form its Definition of Done.
+- State a coverage target of at least 75% of core business logic for that
+  phase. Sacrifice cosmetic tests (string reprs, trivial getters,
+  boilerplate) before ever sacrificing a core logic test.
+- State the attempt budget: how many failed attempts before the phase stops and
+  the plan is revised rather than retried. Three is a sensible default.
+
+List the four phases in the order they'll be implemented.
+
+=================================================================================
+Step 3 — freeze the definition of done  [NEW IN v2]
+
+Still no implementation. Write the acceptance criteria for Phase 1 as executable
+tests — a .feature file, or a test module of the behaviours the phase must
+exhibit — and nothing else. They will fail. That is correct; they describe work
+that does not exist yet.
+
+Then declare them frozen in PHASED.md, using markers phase_check.py can read:
+
+    <!-- phase: 1 -->
+    <!-- targets: src/domain/*.py, tests/domain/*.py -->
+    <!-- frozen: features/*.feature, tests/acceptance/*.py -->
+
+Commit before writing any implementation. From here the definition of done is
+immutable to the thing writing the code.
+
+If, while implementing, a frozen test appears to be wrong: STOP and say so.
+That is an escalation, not an edit. A human unfreezes it, or agrees the test was
+right after all. Silently changing a failing test into a passing one is the
+single failure mode this whole workflow exists to prevent, and it is
+indistinguishable from honest disagreement unless the file is frozen.
+
+=================================================================================
+Step 4 — coding, one phase at a time
+
+Switch to STRICT CODING mode.
+
+RUN THE TESTS. Run them as often as you like — this is the reverse of v1, and
+the reasoning is in the changelog. You may not modify any frozen file.
+
+Prerequisite setup:
+- If pyproject.toml does not exist or lacks dev dependencies, create/update it
+  using uv standards.
+- Include: pydantic, sqlalchemy, pytest, pytest-cov, ruff.
+- Add dependencies as you go so each phase's tests can actually run.
+
+For each phase, in order:
+1. Implement only that phase's declared target files.
+2. Write that phase's tests.
+3. Run the tests. Iterate until they pass or the attempt budget is spent.
+4. If the budget is spent: stop, and write down what you learned and which
+   assumption in DESIGN.md was wrong. Do not start attempt four.
+5. Append to PHASED.md:
+   - Status, and target files created or modified.
+   - Summary of the business logic implemented.
+   - The EXACT, copy-pasteable terminal verification command
+     (e.g. `uv run pytest tests/domain/ -v`).
+   - Any deviation from DESIGN.md, and whether DESIGN.md was amended or the
+     deviation stands. One or the other — never neither. This is what stops a
+     100-line blueprint silently becoming a wiki.
+6. Run the gate from Step 0. Stop. Wait for review and APPROVE.
+
+=================================================================================
+Step 5 — the approval gate has a checklist  [NEW IN v2]
+
+An approval gate with no defined content becomes a rubber stamp by phase three,
+which is precisely when it matters. Before typing APPROVE, answer four
+questions in PHASED.md:
+
+1. Does the diff touch ONLY this phase's declared target files?
+   Machine-checkable — `uv run phase_check.py --phase <n>` answers it. If a file
+   is outside scope, either it always belonged in the phase (add it to the
+   targets and say why) or it is a different phase (revert it).
+
+2. Did any frozen file change?
+   Same command. A frozen file in the diff is a stop-the-line event, not a
+   review comment.
+
+3. Can you state what this phase does without reading the code?
+   If not, the phase was too large, or PHASED.md is describing intent rather
+   than what shipped.
+
+4. What did it NOT do that the DoD claimed?
+   Write the answer down even when it is "nothing". A blank here on every phase
+   is a sign the box is being ticked rather than checked.
+
+Approval is a human-authored entry. The gate may write "Quality Gate: PASSED";
+only a person writes "Approved".
+
+=================================================================================
+Step 6 — point it at something real  [NEW IN v2]
+
+Before calling the work done, run the artefact against a genuine target — not
+its own unit tests. If it is a linter, lint a real repository. If it is a gate,
+gate this project. If it is a service, call it over the wire.
+
+Record what broke in PHASED.md, under a heading that says the defects came from
+this step. Unit tests describe the cases you thought of; this step finds the
+ones you did not. In the build that produced this v2, the suite was green
+throughout and self-hosting still found two defects — both of them the kind
+that would otherwise surface in a demo.
+
+=================================================================================
+CHANGELOG — v1 → v2, and why
+
+Each change came from actually running v1 end to end to build a Kubernetes
+control plane (see ../AI-SDLC/). The evidence is specific because the point of
+versioning a workflow is that the reasons survive alongside the rules.
+
+1. TESTS: "do not run" → "run freely, cannot edit"  [biggest change]
+
+   v1 Step 3 said: "Do not run any tests. I will run the tests myself."
+   That rule was broken within minutes, and breaking it was correct. Every
+   defect worth having came from running them: a gate that reported "no tests
+   collected" as a test failure, and a gate that resolved `pytest` to a
+   different interpreter than the one it was running under — so imports failed
+   in the child that worked in the parent.
+
+   But v1's instinct was right, and here is the proof. When the first test
+   failed, the assistant CHANGED THE TEST — argued the expectation was wrong and
+   rewrote it. That judgement happened to be correct. It is also exactly what
+   gaming looks like from the outside, and nothing in v1 could tell the two
+   apart.
+
+   So: the mechanism was wrong, the fear was right. "Don't run tests" is a crude
+   proxy for "don't edit the definition of done". Freezing says the real thing,
+   costs nothing, and gives back the fastest feedback loop in the system.
+
+2. THE GATE MOVED FROM STEP 4 TO STEP 0
+
+   In v1 the quality gate is built after all the code, so phases one to three
+   are never gated. Building it first is just TDD applied to the gate itself,
+   and it costs nothing to reorder.
+
+3. THE APPROVAL GATE GOT A CHECKLIST (Step 5)
+
+   v1 said "Stop. Wait for my review, my test run, and my APPROVE" without
+   saying what the reviewer checks. An unspecified control decays under
+   deadline pressure — which is the thesis of the whole workflow, applied to
+   the workflow.
+
+4. SCOPE DRIFT BECAME MACHINE-CHECKABLE (phase_check.py)
+
+   Quiet scope expansion is the most common failure and the easiest to miss in
+   a large diff. Comparing changed files against the phase's declared targets
+   is about a hundred lines of script, and it turns a reviewer's vigilance into
+   an exit code.
+
+   Note for the sceptical: writing that script surfaced a bug in itself. Python's
+   fnmatch lets `*` cross `/`, so `src/*.py` silently matched `src/deep/nested.py`
+   — a scope check that over-matches reports clean and is worse than none. It now
+   compiles globs with proper separator semantics. A control you have not tested
+   against its own failure mode is a belief, not a control.
+
+5. AN ATTEMPT BUDGET AND A RE-PLAN TRIGGER (Steps 2 and 4)
+
+   v1 is a straight line with no branch for "the plan was wrong". In practice
+   phase two revealed that phase three was impossible as designed. The
+   coding_agent in langgraph_ollama already has budgets and a no-progress
+   detector; the prompt had neither. This closes the gap in the cheap direction.
+
+6. DESIGN RECONCILIATION (Step 4.5)
+
+   Nothing in v1 folds deviations back into DESIGN.md, which is how a 100-line
+   blueprint becomes a 66KB one. Amend it or record the deviation — never
+   neither.
+
+7. SELF-HOSTING (Step 6)
+
+   The most valuable half hour of the v1 build was pointing the artefact at a
+   real target, and no step asked for it.
+
+8. THE FRAMING QUESTIONS ARE NOW RE-ASKED PER PHASE
+
+   They were excellent and used once.
+
+UNCHANGED, deliberately: plan-only mode, the 100-line limit, the exact
+copy-pasteable verification command, "sacrifice cosmetic tests before core logic
+tests", and saying the cut out loud. Those all earn their place as written.
+
+OPEN QUESTION for v3: nothing here handles more than one person. Freezing works
+because one human holds the pen. With three engineers running phases against a
+shared DESIGN.md, "frozen" needs an owner and an unfreeze protocol, and the
+approval checklist needs to say who may sign. That is a real gap, not an
+oversight — it has just not been tested yet.

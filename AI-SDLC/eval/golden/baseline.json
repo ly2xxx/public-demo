@@ -1,0 +1,14 @@
+{
+  "_comment": "Pre-deployment baseline. Recorded once against a known-good model, then compared nightly. Regenerate deliberately with scripts/record_baseline.sh -- never edit by hand to make an alert go away.",
+  "recorded": null,
+  "model": null,
+  "gateway_role": "maker",
+  "judge_role": "judge",
+  "thresholds": {
+    "min_pass_rate": 0.80,
+    "max_pass_rate_drop_vs_baseline": 0.10,
+    "min_weighted_score": 0.75
+  },
+  "tasks": {},
+  "status": "unrecorded"
+}

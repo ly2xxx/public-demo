@@ -1,0 +1,4 @@
+QUALITY_REPORT.md
+.gate-coverage.json
+__pycache__/
+.pytest_cache/
