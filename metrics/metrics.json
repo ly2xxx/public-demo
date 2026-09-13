@@ -1,0 +1,880 @@
+{
+  "generated": "2026-09-13T04:50:47.156124+00:00",
+  "combined": {
+    "before": {
+      "commits": 73,
+      "reportable": true,
+      "first": "2026-08-07",
+      "last": "2026-08-27",
+      "active_days": 19,
+      "commits_per_active_day": 3.84,
+      "median_lines": 22,
+      "mean_lines": 120,
+      "p90_lines": 361,
+      "max_lines": 1142,
+      "code_commits": 46,
+      "median_code_lines": 41,
+      "p90_code_lines": 411,
+      "median_files": 2,
+      "pct_commits_with_tests": 0.0,
+      "test_to_code_ratio": 0.0,
+      "pct_rework_commits": 6.8,
+      "pct_commits_over_400_lines": 9.6,
+      "size_histogram": [
+        {
+          "label": "1\u201350",
+          "low": 1,
+          "high": 50,
+          "commits": 48,
+          "pct": 65.8
+        },
+        {
+          "label": "51\u2013150",
+          "low": 51,
+          "high": 150,
+          "commits": 12,
+          "pct": 16.4
+        },
+        {
+          "label": "151\u2013400",
+          "low": 151,
+          "high": 400,
+          "commits": 6,
+          "pct": 8.2
+        },
+        {
+          "label": "401\u20131000",
+          "low": 401,
+          "high": 1000,
+          "commits": 6,
+          "pct": 8.2
+        },
+        {
+          "label": "1001+",
+          "low": 1001,
+          "high": null,
+          "commits": 1,
+          "pct": 1.4
+        }
+      ],
+      "code_size_histogram": [
+        {
+          "label": "1\u201350",
+          "low": 1,
+          "high": 50,
+          "commits": 25,
+          "pct": 54.3
+        },
+        {
+          "label": "51\u2013150",
+          "low": 51,
+          "high": 150,
+          "commits": 12,
+          "pct": 26.1
+        },
+        {
+          "label": "151\u2013400",
+          "low": 151,
+          "high": 400,
+          "commits": 3,
+          "pct": 6.5
+        },
+        {
+          "label": "401\u20131000",
+          "low": 401,
+          "high": 1000,
+          "commits": 6,
+          "pct": 13.0
+        },
+        {
+          "label": "1001+",
+          "low": 1001,
+          "high": null,
+          "commits": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    "after": {
+      "commits": 138,
+      "reportable": true,
+      "first": "2026-08-16",
+      "last": "2026-09-12",
+      "active_days": 36,
+      "commits_per_active_day": 3.83,
+      "median_lines": 65,
+      "mean_lines": 1280,
+      "p90_lines": 941,
+      "max_lines": 112926,
+      "code_commits": 64,
+      "median_code_lines": 121,
+      "p90_code_lines": 1129,
+      "median_files": 2,
+      "pct_commits_with_tests": 15.9,
+      "test_to_code_ratio": 0.07,
+      "pct_rework_commits": 6.5,
+      "pct_commits_over_400_lines": 19.6,
+      "size_histogram": [
+        {
+          "label": "1\u201350",
+          "low": 1,
+          "high": 50,
+          "commits": 61,
+          "pct": 44.2
+        },
+        {
+          "label": "51\u2013150",
+          "low": 51,
+          "high": 150,
+          "commits": 25,
+          "pct": 18.1
+        },
+        {
+          "label": "151\u2013400",
+          "low": 151,
+          "high": 400,
+          "commits": 22,
+          "pct": 15.9
+        },
+        {
+          "label": "401\u20131000",
+          "low": 401,
+          "high": 1000,
+          "commits": 13,
+          "pct": 9.4
+        },
+        {
+          "label": "1001+",
+          "low": 1001,
+          "high": null,
+          "commits": 14,
+          "pct": 10.1
+        }
+      ],
+      "code_size_histogram": [
+        {
+          "label": "1\u201350",
+          "low": 1,
+          "high": 50,
+          "commits": 24,
+          "pct": 37.5
+        },
+        {
+          "label": "51\u2013150",
+          "low": 51,
+          "high": 150,
+          "commits": 11,
+          "pct": 17.2
+        },
+        {
+          "label": "151\u2013400",
+          "low": 151,
+          "high": 400,
+          "commits": 13,
+          "pct": 20.3
+        },
+        {
+          "label": "401\u20131000",
+          "low": 401,
+          "high": 1000,
+          "commits": 8,
+          "pct": 12.5
+        },
+        {
+          "label": "1001+",
+          "low": 1001,
+          "high": null,
+          "commits": 8,
+          "pct": 12.5
+        }
+      ]
+    }
+  },
+  "repos": [
+    {
+      "repo": "public-demo",
+      "cutover": "2026-08-16T11:03:50+00:00",
+      "cutover_source": "deterministic-coding/ai-coding-prompt.txt",
+      "total_commits": 43,
+      "before": {
+        "commits": 21,
+        "reportable": true,
+        "first": "2026-08-07",
+        "last": "2026-08-13",
+        "active_days": 3,
+        "commits_per_active_day": 7.0,
+        "median_lines": 4,
+        "mean_lines": 78,
+        "p90_lines": 238,
+        "max_lines": 841,
+        "code_commits": 3,
+        "median_code_lines": 351,
+        "p90_code_lines": 381,
+        "median_files": 1,
+        "pct_commits_with_tests": 0.0,
+        "test_to_code_ratio": 0.0,
+        "pct_rework_commits": 0.0,
+        "pct_commits_over_400_lines": 4.8,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 17,
+            "pct": 81.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 1,
+            "pct": 4.8
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 2,
+            "pct": 9.5
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 1,
+            "pct": 4.8
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 0,
+            "pct": 0.0
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 1,
+            "pct": 33.3
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 2,
+            "pct": 66.7
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 0,
+            "pct": 0.0
+          }
+        ]
+      },
+      "after": {
+        "commits": 22,
+        "reportable": true,
+        "first": "2026-08-16",
+        "last": "2026-09-08",
+        "active_days": 13,
+        "commits_per_active_day": 1.69,
+        "median_lines": 87,
+        "mean_lines": 880,
+        "p90_lines": 2630,
+        "max_lines": 10356,
+        "code_commits": 3,
+        "median_code_lines": 1867,
+        "p90_code_lines": 9932,
+        "median_files": 1,
+        "pct_commits_with_tests": 9.1,
+        "test_to_code_ratio": 0.03,
+        "pct_rework_commits": 0.0,
+        "pct_commits_over_400_lines": 18.2,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 8,
+            "pct": 36.4
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 5,
+            "pct": 22.7
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 3,
+            "pct": 13.6
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 4,
+            "pct": 18.2
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 1,
+            "pct": 33.3
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 2,
+            "pct": 66.7
+          }
+        ]
+      }
+    },
+    {
+      "repo": "langgraph_ollama",
+      "cutover": "2026-07-17T23:29:31+00:00",
+      "cutover_source": ".claude/launch.json",
+      "total_commits": 92,
+      "before": {
+        "commits": 29,
+        "reportable": true,
+        "first": "2024-11-11",
+        "last": "2026-07-09",
+        "active_days": 10,
+        "commits_per_active_day": 2.9,
+        "median_lines": 28,
+        "mean_lines": 130,
+        "p90_lines": 162,
+        "max_lines": 973,
+        "code_commits": 23,
+        "median_code_lines": 20,
+        "p90_code_lines": 629,
+        "median_files": 3,
+        "pct_commits_with_tests": 0.0,
+        "test_to_code_ratio": 0.0,
+        "pct_rework_commits": 17.2,
+        "pct_commits_over_400_lines": 10.3,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 21,
+            "pct": 72.4
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 3,
+            "pct": 10.3
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 2,
+            "pct": 6.9
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 3,
+            "pct": 10.3
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 0,
+            "pct": 0.0
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 18,
+            "pct": 78.3
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 1,
+            "pct": 4.3
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 1,
+            "pct": 4.3
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 3,
+            "pct": 13.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 0,
+            "pct": 0.0
+          }
+        ]
+      },
+      "after": {
+        "commits": 63,
+        "reportable": true,
+        "first": "2026-07-17",
+        "last": "2026-08-29",
+        "active_days": 18,
+        "commits_per_active_day": 3.5,
+        "median_lines": 104,
+        "mean_lines": 304,
+        "p90_lines": 781,
+        "max_lines": 2771,
+        "code_commits": 45,
+        "median_code_lines": 117,
+        "p90_code_lines": 650,
+        "median_files": 3,
+        "pct_commits_with_tests": 27.0,
+        "test_to_code_ratio": 0.31,
+        "pct_rework_commits": 7.9,
+        "pct_commits_over_400_lines": 22.2,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 23,
+            "pct": 36.5
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 12,
+            "pct": 19.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 13,
+            "pct": 20.6
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 10,
+            "pct": 15.9
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 4,
+            "pct": 6.3
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 16,
+            "pct": 35.6
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 11,
+            "pct": 24.4
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 11,
+            "pct": 24.4
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 5,
+            "pct": 11.1
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 2,
+            "pct": 4.4
+          }
+        ]
+      }
+    },
+    {
+      "repo": "local-rag-ollama",
+      "cutover": "2026-08-30T19:25:40+00:00",
+      "cutover_source": "DESIGN.md",
+      "total_commits": 29,
+      "before": {
+        "commits": 23,
+        "reportable": true,
+        "first": "2024-01-22",
+        "last": "2026-08-27",
+        "active_days": 6,
+        "commits_per_active_day": 3.83,
+        "median_lines": 63,
+        "mean_lines": 144,
+        "p90_lines": 427,
+        "max_lines": 1142,
+        "code_commits": 20,
+        "median_code_lines": 70,
+        "p90_code_lines": 411,
+        "median_files": 2,
+        "pct_commits_with_tests": 0.0,
+        "test_to_code_ratio": 0.0,
+        "pct_rework_commits": 0.0,
+        "pct_commits_over_400_lines": 13.0,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 10,
+            "pct": 43.5
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 8,
+            "pct": 34.8
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 2,
+            "pct": 8.7
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 2,
+            "pct": 8.7
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 1,
+            "pct": 4.3
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 7,
+            "pct": 35.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 10,
+            "pct": 50.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 3,
+            "pct": 15.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 0,
+            "pct": 0.0
+          }
+        ]
+      },
+      "after": {
+        "commits": 6,
+        "reportable": false,
+        "first": "2026-08-30",
+        "last": "2026-08-31",
+        "active_days": 2,
+        "commits_per_active_day": 3.0,
+        "median_lines": 303,
+        "mean_lines": 1203,
+        "p90_lines": 1834,
+        "max_lines": 4751,
+        "code_commits": 6,
+        "median_code_lines": 241,
+        "p90_code_lines": 730,
+        "median_files": 4,
+        "pct_commits_with_tests": 33.3,
+        "test_to_code_ratio": 1.41,
+        "pct_rework_commits": 16.7,
+        "pct_commits_over_400_lines": 50.0,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 3,
+            "pct": 50.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 1,
+            "pct": 16.7
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 2,
+            "pct": 33.3
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 3,
+            "pct": 50.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 2,
+            "pct": 33.3
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 1,
+            "pct": 16.7
+          }
+        ]
+      }
+    },
+    {
+      "repo": "interview-code",
+      "cutover": "2026-09-05T19:47:07+00:00",
+      "cutover_source": ".agents/AGENTS.md",
+      "total_commits": 47,
+      "before": {
+        "commits": 0
+      },
+      "after": {
+        "commits": 47,
+        "reportable": true,
+        "first": "2026-09-05",
+        "last": "2026-09-12",
+        "active_days": 6,
+        "commits_per_active_day": 7.83,
+        "median_lines": 35,
+        "mean_lines": 2787,
+        "p90_lines": 428,
+        "max_lines": 112926,
+        "code_commits": 10,
+        "median_code_lines": 279,
+        "p90_code_lines": 12297,
+        "median_files": 1,
+        "pct_commits_with_tests": 2.1,
+        "test_to_code_ratio": 0.0,
+        "pct_rework_commits": 6.4,
+        "pct_commits_over_400_lines": 12.8,
+        "size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 27,
+            "pct": 57.4
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 8,
+            "pct": 17.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 6,
+            "pct": 12.8
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 2,
+            "pct": 4.3
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 4,
+            "pct": 8.5
+          }
+        ],
+        "code_size_histogram": [
+          {
+            "label": "1\u201350",
+            "low": 1,
+            "high": 50,
+            "commits": 4,
+            "pct": 40.0
+          },
+          {
+            "label": "51\u2013150",
+            "low": 51,
+            "high": 150,
+            "commits": 0,
+            "pct": 0.0
+          },
+          {
+            "label": "151\u2013400",
+            "low": 151,
+            "high": 400,
+            "commits": 2,
+            "pct": 20.0
+          },
+          {
+            "label": "401\u20131000",
+            "low": 401,
+            "high": 1000,
+            "commits": 1,
+            "pct": 10.0
+          },
+          {
+            "label": "1001+",
+            "low": 1001,
+            "high": null,
+            "commits": 3,
+            "pct": 30.0
+          }
+        ]
+      }
+    }
+  ]
+}
