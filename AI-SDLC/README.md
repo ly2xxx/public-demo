@@ -20,14 +20,20 @@ Developer ──goal──▶ coding-engineer (one Job per run) ──/v1──�
 eval-harness (nightly CronJob) ──frozen golden set──▶ LiteLLM ──▶ drift panel
 ```
 
+
+
+![1789373008687](image/README/1789373008687.png)
+
+[claude.ai/code/artifact/12694382-68e2-4d05-b459-3aaa9fdc34d5](https://claude.ai/code/artifact/12694382-68e2-4d05-b459-3aaa9fdc34d5)
+
 ## The four claims, and where each is enforced
 
-| Claim | Enforced by | Asserted by |
-| --- | --- | --- |
+| Claim                                          | Enforced by                                                                                          | Asserted by           |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------- |
 | Exactly one egress point, metered and budgeted | `NetworkPolicy` in both namespaces; every workload gets a scoped virtual key, never a provider key | `test_manifests.py` |
-| Maker is never checker | Roles resolve to different models in `litellm/config.yaml`; callers cannot name a model | `test_config.py` |
-| "The tests passed" is never a model's opinion | `gate/run_gate.py` imports no HTTP client and no provider SDK | `test_gate.py` |
-| An empty test suite is not a pass | pytest's no-tests-collected code is a FAIL with its own message | `test_gate.py` |
+| Maker is never checker                         | Roles resolve to different models in`litellm/config.yaml`; callers cannot name a model             | `test_config.py`    |
+| "The tests passed" is never a model's opinion  | `gate/run_gate.py` imports no HTTP client and no provider SDK                                      | `test_gate.py`      |
+| An empty test suite is not a pass              | pytest's no-tests-collected code is a FAIL with its own message                                      | `test_gate.py`      |
 
 The fourth one is the specification-gaming defence. An agent that cannot make
 the suite green can always delete it, so "no tests" and "tests passed" must
