@@ -1,0 +1,237 @@
+<title>__TITLE__</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+:root{
+  --paper:#faf9f6; --surface:#ffffff; --ink:#1a1d1b; --muted:#6d726c; --faint:#9aa09a;
+  --line:#e4e2db; --line-soft:#efede7;
+  --accent:#0d6b57; --accent-soft:#e2efea;
+  --amber:#a8701c; --rust:#96442a;
+  --dot-none:#c9ccc6;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#121412; --surface:#1a1e1c; --ink:#e9eae6; --muted:#9aa29c; --faint:#6f7772;
+    --line:#2b312e; --line-soft:#222825;
+    --accent:#52c3a2; --accent-soft:#1c2f29;
+    --amber:#d2a14e; --rust:#d1785a;
+    --dot-none:#3b423e;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#121412; --surface:#1a1e1c; --ink:#e9eae6; --muted:#9aa29c; --faint:#6f7772;
+  --line:#2b312e; --line-soft:#222825;
+  --accent:#52c3a2; --accent-soft:#1c2f29;
+  --amber:#d2a14e; --rust:#d1785a;
+  --dot-none:#3b423e;
+}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:32px 56px;}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;}
+h1{font-family:var(--cond);font-weight:700;font-size:clamp(30px,6vw,44px);line-height:1.05;margin:0;letter-spacing:-.015em;text-wrap:balance;}
+.lede{margin:10px 0 0;color:var(--muted);max-width:58ch;font-size:15px;}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;margin-top:26px;overflow:hidden;}
+.stat{background:var(--surface);padding:14px 14px 12px;}
+.stat b{display:block;font-family:var(--cond);font-weight:700;font-size:30px;line-height:1;font-variant-numeric:tabular-nums;}
+.stat span{display:block;margin-top:5px;font-size:11.5px;color:var(--muted);line-height:1.3;}
+.stat.is-key b{color:var(--accent);}
+.stat.is-warn b{color:var(--rust);}
+
+h2{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:44px 0 14px;display:flex;align-items:baseline;gap:9px;}
+h2 .n{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:0;}
+
+.live{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:3px;padding:14px 15px;}
+.card.attached{border-left-color:var(--accent);border-left-style:dashed;}
+.card.clone{border-left-color:var(--amber);}
+.card .cn{font-family:var(--mono);font-size:13.5px;font-weight:500;word-break:break-all;}
+.card .acc{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-top:7px;}
+.card.clone .acc{color:var(--amber);}
+.card dl{margin:11px 0 0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;}
+.card dt{color:var(--faint);font-family:var(--mono);font-size:10.5px;}
+.card dd{margin:0;font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;}
+
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px;}
+#q{flex:1 1 200px;min-width:0;font-family:var(--mono);font-size:13px;padding:8px 11px;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--ink);}
+#q:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:var(--mono);font-size:11px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);cursor:pointer;}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);}
+.row{display:grid;grid-template-columns:9px 1fr auto;gap:0 11px;align-items:center;padding:8px 2px;border-bottom:1px solid var(--line-soft);}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dot-none);flex:none;}
+.dot.push{background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+.dot.attached{background:transparent;box-shadow:inset 0 0 0 2px var(--accent);}
+.dot.clone{background:var(--amber);}
+.name{font-family:var(--mono);font-size:13px;color:var(--ink);text-decoration:none;word-break:break-all;}
+.name:hover{color:var(--accent);text-decoration:underline;}
+.name .own{color:var(--faint);}
+.meta{display:flex;align-items:center;gap:8px;justify-self:end;}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 5px;border-radius:2px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;}
+.tag.priv{border-color:var(--amber);color:var(--amber);}
+.tag.fork{color:var(--faint);}
+.when{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:52px;text-align:right;}
+.bar{width:64px;height:4px;background:var(--line-soft);border-radius:2px;overflow:hidden;flex:none;}
+.bar i{display:block;height:100%;background:var(--accent);}
+.bar i.mid{background:var(--amber);}
+.bar i.old{background:var(--rust);}
+.empty{font-family:var(--mono);font-size:12px;color:var(--muted);padding:18px 2px;}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.legend span{display:flex;align-items:center;gap:6px;}
+
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+footer p{margin:0 0 9px;max-width:62ch;}
+footer code{font-family:var(--mono);font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:1px 5px;color:var(--ink);}
+
+@media (max-width:560px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .row{grid-template-columns:9px 1fr;row-gap:5px;}
+  .meta{grid-column:2;justify-self:start;}
+  .bar{width:44px;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Claude Code session &middot; snapshot __ASOF__</p>
+    <h1>__TITLE__</h1>
+    <p class="lede">Every GitHub repository this session can reach, and which of them are attached or cloned to disk. Reachable repositories are attached on request; nothing else is pulled down until you ask.</p>
+    <div class="stats">
+      <div class="stat is-key"><b id="s-live">0</b><span>attached or cloned</span></div>
+      <div class="stat"><b id="s-reach">0</b><span>reachable on request</span></div>
+      <div class="stat"><b id="s-priv">0</b><span>private</span></div>
+      <div class="stat is-warn"><b id="s-stale">0</b><span>untouched over a year</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>In this session <span class="n" id="n-live">0</span></h2>
+    <div class="live" id="live"></div>
+  </section>
+
+  <section>
+    <h2>Reachable <span class="n" id="shown">0</span></h2>
+    <div class="controls">
+      <input id="q" type="search" placeholder="filter by name…" autocomplete="off" aria-label="Filter repositories by name">
+      <div class="chips" role="group" aria-label="Filters">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true">all</button>
+        <button class="chip" id="f-session" data-f="session" aria-pressed="false">in session</button>
+        <button class="chip" id="f-private" data-f="private" aria-pressed="false">private</button>
+        <button class="chip" id="f-fork" data-f="fork" aria-pressed="false">forks</button>
+        <button class="chip" id="f-fresh" data-f="fresh" aria-pressed="false">last 30d</button>
+        <button class="chip" id="f-stale" data-f="stale" aria-pressed="false">&gt;1 year</button>
+      </div>
+    </div>
+    <ol class="list" id="list"></ol>
+    <p class="empty" id="empty" hidden>Nothing matches that filter.</p>
+    <div class="legend">
+      <span><i class="dot push"></i> attached, push branch</span>
+      <span><i class="dot attached"></i> attached, read only</span>
+      <span><i class="dot clone"></i> anonymous clone</span>
+      <span><i class="dot"></i> not cloned</span>
+      <span>bar = time since last push</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>To bring a repository into the session, name it, for example <code>add owner/repo</code>. Private repositories are attached with credentials and clone to <code>/home/user/&lt;repo&gt;</code>. Public ones can be cloned anonymously to <code>/home/user/&lt;owner&gt;/&lt;repo&gt;</code>, which reads but cannot push.</p>
+    <p>A snapshot taken __ASOF__. Ages are measured from that date, so they stay fixed as the page is revisited.</p>
+  </footer>
+</div>
+
+<script>
+const REPOS=__DATA__;
+(function(){
+  var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var ACCESS={push:"Attached · read + push",attached:"Attached · read only",clone:"Anonymous clone · read"};
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function fmt(d){if(!d)return "unknown";var p=d.split("-");return p[2].replace(/^0/,"")+" "+MONTHS[+p[1]-1]+" "+p[0];}
+  function ago(a){
+    if(a===null||a===undefined)return "—";
+    if(a<1)return "today";
+    if(a<30)return a+"d";
+    if(a<365)return Math.round(a/30)+"mo";
+    return (Math.round(a/36.5)/10)+"y";
+  }
+
+  var listed=REPOS.filter(function(r){return r.listed;});
+  var live=REPOS.filter(function(r){return r.t!=="reachable";});
+  $("s-live").textContent=live.length;
+  $("s-reach").textContent=listed.length;
+  $("s-priv").textContent=listed.filter(function(r){return r.v==="private";}).length;
+  $("s-stale").textContent=listed.filter(function(r){return r.a>365;}).length;
+  $("n-live").textContent=live.length;
+
+  var order={push:0,attached:1,clone:2};
+  live.sort(function(a,b){return order[a.t]-order[b.t]||a.n.localeCompare(b.n);});
+  $("live").innerHTML=live.map(function(r){
+    return '<div class="card '+r.t+'"><div class="cn">'+esc(r.n)+'</div>'+
+      '<div class="acc">'+ACCESS[r.t]+'</div><dl>'+
+      '<dt>path</dt><dd>'+esc(r.p||"not cloned yet")+'</dd>'+
+      (r.z?'<dt>size</dt><dd>'+esc(r.z)+'</dd>':'')+
+      (r.b?'<dt>branch</dt><dd>'+esc(r.b)+'</dd>':'')+
+      '</dl></div>';
+  }).join("");
+
+  var frag=document.createDocumentFragment();
+  REPOS.forEach(function(r){
+    var li=document.createElement("li");
+    li.className="row";
+    var parts=r.n.split("/");
+    var pct=r.a==null?0:Math.max(4,Math.min(100,Math.round(r.a/730*100)));
+    var band=r.a>365?"old":(r.a>180?"mid":"");
+    li.innerHTML=
+      '<i class="dot '+(r.t==="reachable"?"":r.t)+'"></i>'+
+      '<a class="name" href="https://github.com/'+esc(r.n)+'" target="_blank" rel="noopener">'+
+        '<span class="own">'+esc(parts[0])+'/</span>'+esc(parts[1]||"")+'</a>'+
+      '<span class="meta">'+
+        (r.v==="private"?'<span class="tag priv">private</span>':'')+
+        (r.f?'<span class="tag fork">fork</span>':'')+
+        '<span class="bar"><i class="'+band+'" style="width:'+pct+'%"></i></span>'+
+        '<span class="when" title="'+fmt(r.d)+'">'+ago(r.a)+'</span>'+
+      '</span>';
+    li._r=r;
+    frag.appendChild(li);
+  });
+  $("list").appendChild(frag);
+  var rows=[].slice.call($("list").children), active="all";
+
+  function pass(r,text){
+    if(text&&r.n.toLowerCase().indexOf(text)===-1)return false;
+    switch(active){
+      case "session":return r.t!=="reachable";
+      case "private":return r.v==="private";
+      case "fork":return !!r.f;
+      case "fresh":return r.a!=null&&r.a<=30;
+      case "stale":return r.a>365;
+      default:return true;
+    }
+  }
+  function apply(){
+    var text=$("q").value.trim().toLowerCase(),n=0;
+    rows.forEach(function(li){var ok=pass(li._r,text);li.hidden=!ok;if(ok)n++;});
+    $("shown").textContent=n;
+    $("empty").hidden=n>0;
+  }
+  $("q").addEventListener("input",apply);
+  [].slice.call(document.querySelectorAll(".chip")).forEach(function(c){
+    c.addEventListener("click",function(){
+      active=c.dataset.f;
+      document.querySelectorAll(".chip").forEach(function(o){o.setAttribute("aria-pressed",String(o===c));});
+      apply();
+    });
+  });
+  apply();
+})();
+</script>
